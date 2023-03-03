@@ -102,6 +102,7 @@ html {
     border-bottom: #00000080 2px solid;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    z-index: 100000;
 }
 
 .badge {
@@ -180,4 +181,12 @@ html {
     padding: 5px 20px;
     font-size: 14px;
     text-align: center;
+}
+
+.footer-navbar > li {
+    padding: 1rem 0.5rem;
+}
+
+.footer-navbar a:hover {
+    color: #3a25a8;
 }
