@@ -117,6 +117,21 @@ html {
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, border-radius 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.fade-in {
+    animation: fadeInAnimation ease 3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 .badge-sm {
     font-size: 12px;
     vertical-align: middle;
@@ -128,6 +143,20 @@ html {
     background-attachment: fixed;
 }
 
+.slideshow-control {
+    font-size: 5rem;
+    color: var(--primary);
+    font-weight: bolder;
+    opacity: 0.2;
+    transition: opactiy ease-in 2s;
+    padding: 1rem;
+    transform: translateY(-25%);
+}
+
+.slideshow-control:hover {
+    opacity: 1;
+}
+
 .experience-box {
     background-color: #FFF;
     border-radius: 20px;
@@ -136,6 +165,9 @@ html {
     margin-right: auto;
     padding: 30px 15px;
     overflow: hidden;
+    opacity: 0.25;
+
+    transition: transform ease-in 0.65s, opacity ease-in 0.2s;
 }
 
 .experience-box::before {
@@ -174,6 +206,14 @@ html {
     padding: 0;
     margin-top: 28px;
     margin-bottom: 10px;
+}
+
+.opacity-100 {
+    opacity: 1;
+}
+
+.translate-y-0 {
+    transform: translateY(0);
 }
 
 .feature-list > li {

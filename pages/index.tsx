@@ -2,11 +2,12 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 import NavMenu from '@/components/NavMenu'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import PortfolioItem from '@/components/PortfolioItem'
 import { getPortfolioItems, PortfolioParams } from '@/services/portfolioService'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import Tooltip from '@/components/Tooltip'
+import useOnScreen from '@/hooks/useOnScreen'
 
 export const getServerSideProps: GetServerSideProps<{ portfolio: PortfolioParams[] }> = async (context) => {
   const portfolio: PortfolioParams[] = await getPortfolioItems();
@@ -18,6 +19,8 @@ export const getServerSideProps: GetServerSideProps<{ portfolio: PortfolioParams
 export default function Home({ portfolio }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [navBarPosition, setNavBarPosition] = useState("");
   const [tooltipVisiblity, setTooltipVisiblity] = useState(false);
+  const expirienceRef = useRef(null);
+  const isExpirienceDivVisible = useOnScreen(expirienceRef);
 
   function onScroll() {
     if (window.scrollY > 0)
@@ -52,7 +55,7 @@ export default function Home({ portfolio }: InferGetServerSidePropsType<typeof g
             <div id={styles.intro_divider}>
               <div className='text-center pt-24 pb-20 px-7 mx-auto'>
                 <div className='flex'>
-                  <div className='mx-auto w-2/3 basis-2/3 px-7'>
+                  <div className='mx-auto w-2/3 basis-2/3 px-7 fade-in'>
                     <h1 className='uppercase font-bold text-lg'>
                       Software Enginner |
                       <br />
@@ -72,20 +75,20 @@ export default function Home({ portfolio }: InferGetServerSidePropsType<typeof g
           <article className="container pt-0 mx-auto px-7 lg:pb-20">
             <div>
               <div className='overflow-hidden'>
-                <ul className='flex flex-row text-center'>
-                  <li className='lg:min-w-[30rem] pb-8 mx-1 px-8 flex flex-col'>
+                <ul className='flex flex-row text-center after:content-[" "] after:block'>
+                  <li className='lg:min-w-[30rem] pb-8 mx-1 px-8 flex flex-col fade-in'>
                     <svg className='icon overflow-hidden align-middle'>
                     </svg>
                     <h4 className='color-primary uppercase'>ecommerce</h4>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam, incidunt esse! Quod placeat earum facere laborum voluptates numquam quis consequuntur cupiditate! Quis est repudiandae quod. Molestiae iste quidem quia quas!</p>
                   </li>
-                  <li className='lg:min-w-[30rem] pb-8 mx-1 px-8 flex flex-col'>
+                  <li className='lg:min-w-[30rem] pb-8 mx-1 px-8 flex flex-col fade-in'>
                     <svg className='icon overflow-hidden align-middle'>
                     </svg>
                     <h4 className='color-primary uppercase'>ecommerce</h4>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam, incidunt esse! Quod placeat earum facere laborum voluptates numquam quis consequuntur cupiditate! Quis est repudiandae quod. Molestiae iste quidem quia quas!</p>
                   </li>
-                  <li className='lg:min-w-[30rem] pb-8 mx-1 px-8 flex flex-col'>
+                  <li className='lg:min-w-[30rem] pb-8 mx-1 px-8 flex flex-col fade-in'>
                     <svg className='icon overflow-hidden align-middle'>
                     </svg>
                     <h4 className='color-primary uppercase'>ecommerce</h4>
@@ -98,6 +101,10 @@ export default function Home({ portfolio }: InferGetServerSidePropsType<typeof g
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam, incidunt esse! Quod placeat earum facere laborum voluptates numquam quis consequuntur cupiditate! Quis est repudiandae quod. Molestiae iste quidem quia quas!</p>
                   </li>
                 </ul>
+              </div>
+              <div>
+                <button className='absolute opacity-20 border-none top-[45%] left-0 slideshow-control'>&lt;</button>
+                <button className='absolute opacity-20 border-none top-[45%] right-0 slideshow-control'>&gt;</button>
               </div>
               <div className='text-center'>
                 <a href='#portfolio' className='btn btn-secondary'>Learn More</a>
@@ -117,7 +124,7 @@ export default function Home({ portfolio }: InferGetServerSidePropsType<typeof g
           <div className='container mx-auto pt-6 px-8'>
             <div className='text-center grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:px-16'>
               <div className='mx-auto px-7 w-full'>
-                <div className='experience-box relative'>
+                <div className={`experience-box relative translate-y-[10%] ${(isExpirienceDivVisible ? "!translate-y-[-10%] !opacity-100": "")}`}>
                   <h3 className='uppercase text-base relative z-30 text-[#777]'>Basic</h3>
                   <ul className='feature-list'>
                     <li onMouseOver={() => setTooltipVisiblity(true)} onMouseOut={() => setTooltipVisiblity(false)} className="cursor-pointer">Website Audit</li>
@@ -130,7 +137,7 @@ export default function Home({ portfolio }: InferGetServerSidePropsType<typeof g
                 </div>
               </div>
               <div className='mx-auto p-7 w-full'>
-                <div className='experience-box relative before:bg-[#7205f7] after:bg-[#5826a082]'>
+                <div className={`experience-box relative before:bg-[#7205f7] after:bg-[#5826a082] translate-y-[20%] ${(isExpirienceDivVisible ? "!translate-y-[-10%] !opacity-100": "")}`}>
                   <h3 className='uppercase text-base relative z-30 text-white'>Basic</h3>
                   <ul className='feature-list'>
                     <li>Website Audit</li>
@@ -149,7 +156,7 @@ export default function Home({ portfolio }: InferGetServerSidePropsType<typeof g
                 </div>
               </div>
               <div className='mx-auto p-7 w-full'>
-                <div className='experience-box relative before:bg-[#ffcd00] after:bg-[#e4ba34]'>
+                <div ref={expirienceRef} className={`experience-box relative before:bg-[#ffcd00] after:bg-[#e4ba34] translate-y-[30%] ${(isExpirienceDivVisible ? "!translate-y-[-10%] !opacity-100": "")}`}>
                   <h3 className='uppercase text-base relative z-30 text-white'>Basic</h3>
                   <ul className='feature-list'>
                     <li>Website Audit</li>
