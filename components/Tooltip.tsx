@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Tooltip({ text, visiblity }: { text: string, visiblity: boolean }) {
     const ref = useRef<HTMLDivElement>(null);
@@ -7,7 +7,7 @@ export default function Tooltip({ text, visiblity }: { text: string, visiblity: 
 
     const [width, setWidth] = useState(0);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         setWidth(ref.current?.offsetWidth ?? 0);
     });
 

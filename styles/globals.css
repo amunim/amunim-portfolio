@@ -4,6 +4,8 @@
 
 :root {
     --primary: #5b43d6;
+
+    --primary-light: #5b43d644;
 }
 
 #header-logo-icon {
@@ -45,6 +47,10 @@ nav {
     font-size: 0.875rem;
 }
 
+html, body, #__next {
+    height: 100%;
+}
+
 .btn:hover {
     cursor: pointer;
 }
@@ -52,6 +58,13 @@ nav {
 .btn-secondary {
     border-color: var(--primary);
     color: var(--primary);
+
+    transition: background-color ease-in 150ms, color ease-in 150ms;
+}
+
+.btn-secondary:hover {
+    color: white;
+    background-color: var(--primary);
 }
 
 .btn-primary {
@@ -117,8 +130,12 @@ html {
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, border-radius 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.transition-op {
+    transition: opacity ease-in 2s;
+}
+
 .fade-in {
-    animation: fadeInAnimation ease 3s;
+    animation: fadeInAnimation ease 2s;
     animation-fill-mode: forwards;
 }
 
@@ -147,8 +164,9 @@ html {
     font-size: 5rem;
     color: var(--primary);
     font-weight: bolder;
+    background-color: transparent;
     opacity: 0.2;
-    transition: opactiy ease-in 2s;
+    transition: opactiy ease-in 150ms;
     padding: 1rem;
     transform: translateY(-25%);
 }
@@ -165,9 +183,15 @@ html {
     margin-right: auto;
     padding: 30px 15px;
     overflow: hidden;
-    opacity: 0.25;
 
     transition: transform ease-in 0.65s, opacity ease-in 0.2s;
+}
+
+@media only screen and (min-width: 600px) {
+    .experience-box {
+        opacity: 0.25;
+        transform: translateY(10%);
+    }
 }
 
 .experience-box::before {
@@ -206,6 +230,8 @@ html {
     padding: 0;
     margin-top: 28px;
     margin-bottom: 10px;
+    margin-left: 4rem;
+    margin-right: 4rem;
 }
 
 .opacity-100 {

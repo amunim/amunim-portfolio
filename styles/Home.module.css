@@ -38,7 +38,7 @@
   left: 0;
   bottom: 0;
   height: 200px;
-  z-index: 1;
+  z-index: -50;
   opacity: 0.1;
   background-position: center top;
   background-size: cover;
@@ -58,7 +58,7 @@
   opacity: 0.1;
   height: 270px;
   position: absolute;
-  z-index: 0;
+  z-index: -50;
   background-position: center top;
   background-size: cover;
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxNDQwIDMyMCc+PHBhdGggZmlsbD0nI2ZmZmZmZicgZmlsbC1vcGFjaXR5PScxJyBkPSdNMCwyMjRMNjAsMjAyLjdDMTIwLDE4MSwyNDAsMTM5LDM2MCwxMjhDNDgwLDExNyw2MDAsMTM5LDcyMCwxNDkuM0M4NDAsMTYwLDk2MCwxNjAsMTA4MCwxMzguN0MxMjAwLDExNywxMzIwLDc1LDEzODAsNTMuM0wxNDQwLDMyTDE0NDAsMzIwTDEzODAsMzIwQzEzMjAsMzIwLDEyMDAsMzIwLDEwODAsMzIwQzk2MCwzMjAsODQwLDMyMCw3MjAsMzIwQzYwMCwzMjAsNDgwLDMyMCwzNjAsMzIwQzI0MCwzMjAsMTIwLDMyMCw2MCwzMjBMMCwzMjBaJz48L3BhdGg+PC9zdmc+);
@@ -70,7 +70,7 @@
   left: 0;
   height: 78px;
   position: absolute;
-  z-index: 0;
+  z-index: -50;
   background-position: center top;
   background-size: cover;
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxNjc5IDE5OC42Jz48cGF0aCBkPSdNODM5LjUgOTYuN0M0ODUuMyA5Ni43IDE3NC41IDU3LjkgMCAwdjE5OC42aDE2NzlWMGMtMTc0LjUgCTU3LjktNDg1LjMgOTYuNy04MzkuNSA5Ni43eicgZmlsbD0nI2ZmZicvPjwvc3ZnPg==);
