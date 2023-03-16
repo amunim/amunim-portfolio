@@ -13,11 +13,11 @@ export default function NavMenu() {
                 <a href='#services' className={styles['menu_button']}>
                     SERVICES
                 </a>
-                <a className={styles['menu_button']}>
+                <a href="#portfolio" className={styles['menu_button']}>
                     PORTFOLIO
                 </a>
-                <a className={styles['menu_button']}>
-                    PRICING
+                <a href="#pricing" className={styles['menu_button']}>
+                    EXPIRIENCES
                 </a>
             </div>
         </nav>

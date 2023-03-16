@@ -20,24 +20,32 @@ const getPortfolioItems: () => Promise<PortfolioParams[]> = () => {
             year: "Recommmended",
             videoLink: "#main",
             visitLink: "#main"
+            // visitLink: "https://opticofy.com/"
         },
         {
             Id: 2,
-            title: "Agyle Intelligence ",
+            title: "Simple Accounting",
             previewLink: "#main",
-            description: "A platform for automating data collection and reporting throughout teams, operations and supply chains.\n\nDesign by Kristin Killam.",
-            year: "2019",
-            videoLink: "#main",
+            description: `A simple accounting software to create invoices, JV/Bank Voucher/Cash Voucher. Project/Customer wise reports or vouchers. Reporting such as
+    Audit Trail
+    Trail Balance
+    Income Expense
+    Controlling Balance
+    Yearly Comparision (Expense)
+    Project wise Accounts Summary
+    Project wise Non Expense Accounts summary`,
+            year: "2022",
+            videoLink: "/portfolio/accounting.mp4",
             visitLink: "#main"
         },
         {
             Id: 3,
-            title: "Hal-Con",
+            title: "Opticofy",
             previewLink: "#main",
-            description: "Atlantic Canada's premier sci-fi and gaming convention.",
-            year: "2015",
-            videoLink: "#main",
-            visitLink: "#main"
+            description: `A simple POS application to create invoices for sales in optical shop vendors, simply add a customer info, create recievables or sales records. Later Have reporting on yearly sales or customer-wise sales`,
+            year: "2021",
+            videoLink: "/portfolio/opticofy.gif",
+            visitLink: "https://opticofy.com/"
         },
     ]);
 }
