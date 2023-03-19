@@ -3,9 +3,10 @@ export type PortfolioParams = {
     title: string,
     year: string,
     description: string,
+    posterLink: string,
     videoLink: string,
     previewLink: string,
-    visitLink: string
+    visitLink: string,
 }
 
 const getPortfolioItems: () => Promise<PortfolioParams[]> = () => {
@@ -19,8 +20,8 @@ const getPortfolioItems: () => Promise<PortfolioParams[]> = () => {
             description: "Collect client feedback and report bugs into Jira, Trello, Asana, Github directly from your site with screenshots, annotations, console logs, and more.",
             year: "Recommmended",
             videoLink: "#main",
+            posterLink: "",
             visitLink: "#main"
-            // visitLink: "https://opticofy.com/"
         },
         {
             Id: 2,
@@ -36,6 +37,7 @@ const getPortfolioItems: () => Promise<PortfolioParams[]> = () => {
     Project wise Non Expense Accounts summary`,
             year: "2022",
             videoLink: "/portfolio/accounting.mp4",
+            posterLink: "",
             visitLink: "#main"
         },
         {
@@ -44,7 +46,8 @@ const getPortfolioItems: () => Promise<PortfolioParams[]> = () => {
             previewLink: "#main",
             description: `A simple POS application to create invoices for sales in optical shop vendors, simply add a customer info, create recievables or sales records. Later Have reporting on yearly sales or customer-wise sales`,
             year: "2021",
-            videoLink: "/portfolio/opticofy.gif",
+            posterLink: "/portfolio/opticofy.gif",
+            videoLink: "",
             visitLink: "https://opticofy.com/"
         },
     ]);

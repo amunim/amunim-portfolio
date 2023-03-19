@@ -8,6 +8,10 @@
     --primary-light: #5b43d644;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 #header-logo-icon {
     color: #FFF;
     background-image: url("data:image/svg+xml;base64,CjxzdmcgYXJpYS1oaWRkZW49J3RydWUnIGZvY3VzYWJsZT0nZmFsc2UnIGRhdGEtcHJlZml4PSdmYXMnIGRhdGEtaWNvbj0ncG9sbC1oJyBjbGFzcz0nc3ZnLWlubGluZS0tZmEgZmEtcG9sbC1oIGZhLXctMTQnIHJvbGU9J2ltZycgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgNDQ4IDUxMic+PHBhdGggZmlsbD0nI2ZmZicgZD0nTTQ0OCA0MzJWODBjMC0yNi41LTIxLjUtNDgtNDgtNDhINDhDMjEuNSAzMiAwIDUzLjUgMCA4MHYzNTJjMCAyNi41IDIxLjUgNDggNDggNDhoMzUyYzI2LjUgMCA0OC0yMS41IDQ4LTQ4ek0xMTIgMTkyYy04Ljg0IDAtMTYtNy4xNi0xNi0xNnYtMzJjMC04Ljg0IDcuMTYtMTYgMTYtMTZoMTI4YzguODQgMCAxNiA3LjE2IDE2IDE2djMyYzAgOC44NC03LjE2IDE2LTE2IDE2SDExMnptMCA5NmMtOC44NCAwLTE2LTcuMTYtMTYtMTZ2LTMyYzAtOC44NCA3LjE2LTE2IDE2LTE2aDIyNGM4Ljg0IDAgMTYgNy4xNiAxNiAxNnYzMmMwIDguODQtNy4xNiAxNi0xNiAxNkgxMTJ6bTAgOTZjLTguODQgMC0xNi03LjE2LTE2LTE2di0zMmMwLTguODQgNy4xNi0xNiAxNi0xNmg2NGM4Ljg0IDAgMTYgNy4xNiAxNiAxNnYzMmMwIDguODQtNy4xNiAxNi0xNiAxNmgtNjR6Jz48L3BhdGg+PC9zdmc+");
@@ -47,7 +51,9 @@ nav {
     font-size: 0.875rem;
 }
 
-html, body, #__next {
+html,
+body,
+#__next {
     height: 100%;
 }
 
@@ -102,7 +108,15 @@ p {
 }
 
 .headerMenu {
-    transition: 0.25s padding-top ease-in-out, 0.25s padding-bottom ease-in-out;
+    transition: 0.25s padding-top ease-in-out, 0.25s padding-bottom ease-in-out, 0.25s left ease-in-out;
+}
+
+.left-hide {
+    left: -100% !important;
+}
+
+.left-show {
+    left: 0 !important;
 }
 
 html {
@@ -111,11 +125,11 @@ html {
 
 .sticky {
     position: fixed !important;
-    background-color: rgb(71 85 105);
+    background-color: #475569;
     border-bottom: #00000080 2px solid;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    z-index: 100000;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    z-index: 10000;
 }
 
 .badge {
@@ -230,8 +244,8 @@ html {
     padding: 0;
     margin-top: 28px;
     margin-bottom: 10px;
-    margin-left: 4rem;
-    margin-right: 4rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 .opacity-100 {
@@ -242,14 +256,28 @@ html {
     transform: translateY(0);
 }
 
-.feature-list > li {
+.feature-list>li {
     display: block;
-    padding: 5px 20px;
+    padding: 5px 10px;
     font-size: 14px;
     text-align: center;
+    line-height: 1.2rem;
+    min-width: 100%;
 }
 
-.footer-navbar > li {
+.feature-list>li>a {
+    text-decoration: dotted;
+    text-decoration-line: underline;
+    text-underline-offset: 0.2rem;
+}
+
+.feature-list>li>a:hover {
+    color: #7205f7;
+    text-decoration: wavy;
+    text-decoration-line: underline;
+}
+
+.footer-navbar>li {
     padding: 1rem 0.5rem;
 }
 

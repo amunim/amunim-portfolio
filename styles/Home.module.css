@@ -8,6 +8,12 @@
   color: #ffcb05
 }
 
+@media (max-width: 768px) {
+  .menu_button {
+    padding: 1rem;
+  }
+}
+
 #intro::before {
   content: ' ';
   top: 0;
@@ -82,5 +88,5 @@
 }
 
 .secondary-button:hover {
-  background: linear-gradient(180deg,#ffdc0d 0%,#ffbf0d 100%);
+  background: linear-gradient(180deg, #ffdc0d 0%, #ffbf0d 100%);
 }

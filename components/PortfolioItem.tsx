@@ -1,13 +1,13 @@
 import { PortfolioParams } from "@/services/portfolioService";
 
-export default function PortfolioItem({ title, year, description, videoLink, previewLink, visitLink }: PortfolioParams) {
+export default function PortfolioItem({ title, year, posterLink, description, videoLink, previewLink, visitLink }: PortfolioParams) {
 
     return (
         <>
             <div className='container lg:max-w-[960px] mx-auto px-7 py-20'>
                 <div className='flex flex-row items-center text-center lg:text-left h-full'>
                     <div className='lg:basis-1/2 lg:p-0'>
-                        <video autoPlay loop poster={videoLink}>
+                        <video autoPlay loop {...(posterLink ? { poster: posterLink } : {})}>
                             <source src={videoLink} />
                         </video>
                     </div>

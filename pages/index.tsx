@@ -2,7 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 import NavMenu from '@/components/NavMenu'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
+import Particles from "react-tsparticles"
+import { loadFull } from 'tsparticles'
 import PortfolioItem from '@/components/PortfolioItem'
 import { getPortfolioItems, PortfolioParams } from '@/services/portfolioService'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
@@ -12,6 +14,7 @@ import ContributionCard from '@/components/ContributionCard'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import { ContributionParams, getContributionItems } from '@/services/contributionService'
+import { Engine, RecursivePartial, IOptions } from 'tsparticles-engine'
 // import {Swiper} from "swiper";
 
 export const getServerSideProps: GetServerSideProps<{ portfolio: PortfolioParams[], contributions: ContributionParams[] }> = async (context) => {
@@ -23,26 +26,129 @@ export const getServerSideProps: GetServerSideProps<{ portfolio: PortfolioParams
 }
 
 export default function Home({ portfolio, contributions }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const [navBarPosition, setNavBarPosition] = useState("");
   const [tooltipVisiblity, setTooltipVisiblity] = useState(false);
+  const [tooltipText, setTooltipText] = useState("");
   const [startingClasses, setStartingClasses] = useState("");
   const expirienceRef = useRef(null);
   const isExpirienceDivVisible = useOnScreen(expirienceRef);
 
-  function onScroll() {
-    if (window.scrollY > 0)
-      setNavBarPosition("sticky");
-    else
-      setNavBarPosition("");
+  const particlesInit = useCallback(async (engine: Engine) =>
+    await loadFull(engine), []);
+
+  const particleOptions: RecursivePartial<IOptions> =
+  {
+    fullScreen: false,
+    particles:
+    {
+      number:
+      {
+        value: 10,
+
+        density:
+        {
+          enable: true,
+
+          value_area: 600
+        }
+      },
+      color: { value: "#FFFFFF" },
+      shape: {
+        type: "circle",
+        stroke: {
+          width: 0,
+          color: "#000000"
+        },
+        polygon: { nb_sides: 5 }
+      },
+      opacity: {
+        value: 0.25,
+        random: true,
+        anim: {
+          enable: false,
+          speed: 1,
+          opacity_min: 0.1,
+          sync: false
+        }
+      },
+      size: {
+        value: 29,
+        random: true,
+        anim: {
+          enable: false,
+          speed: 2,
+          size_min: 0.1,
+          sync: false
+        }
+      },
+      line_linked: {
+        enable: false,
+        distance: 300,
+        color: "#FFFFFF",
+        opacity: 0,
+        width: 0
+      },
+      move: {
+        enable: true,
+        speed: 0.5,
+        direction: "top",
+        straight: true,
+        out_mode: "out",
+        bounce: false,
+        random: true,
+        attract: {
+          enable: false,
+          rotateX: 600,
+          rotateY: 1200
+        }
+      }
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: {
+        onHover: {
+          enable: false,
+          mode: "repulse"
+        },
+        onClick: {
+          enable: false,
+          mode: "push"
+        },
+        resize: true
+      },
+      modes: {
+        grab: {
+          distance: 800,
+          line_linked: { opacity: 1 }
+        },
+        bubble: {
+          distance: 790,
+          size: 79,
+          duration: 2,
+          opacity: 0.8,
+          speed: 3
+        },
+        repulse: {
+          distance: 400,
+          duration: 0.4
+        },
+        push: { particles_nb: 4 },
+        remove: { particles_nb: 2 }
+      }
+    },
+    retina_detect: true
+  };
+
+  const particlesLoaded = useCallback(async (container: any) =>
+    console.log(container), []);
+
+
+  function EnableTooltip(text: string) {
+    setTooltipText(text);
+    setTooltipVisiblity(true);
   }
 
   useEffect(() => {
-    window.addEventListener("scroll", onScroll);
     setStartingClasses("opacity-100");
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    }
   })
 
   return (
@@ -54,11 +160,17 @@ export default function Home({ portfolio, contributions }: InferGetServerSidePro
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className={`absolute ${navBarPosition} py-7 w-full top-0 bg-transparent z-[100] headerMenu`}>
+      <header>
         <NavMenu />
       </header>
       <main id='main' className='bg-white w-full'>
         <section id={styles.intro} className="text-white lg:mb-12">
+          <Particles
+            id="tsParticles"
+            init={particlesInit}
+            loaded={particlesLoaded}
+            className="w-[100vw] h-[100vh] absolute"
+            options={particleOptions} />
           <div id={styles.intro_inner}>
             <div id={styles.intro_divider}>
               <div className='text-center pt-24 pb-20 px-7 mx-auto'>
@@ -145,8 +257,8 @@ export default function Home({ portfolio, contributions }: InferGetServerSidePro
                   </SwiperSlide>
                   <SwiperSlide className={`lg:!min-w-[30vw] md:!min-w-[45vw] min-w-[96vw] pb-8 mx-1 px-8 flex flex-col opacity-0 transition-op ${startingClasses}`}>
                     <div className='relative align-middle h-44'>
-                        <Image alt="CRM Icon" fill layout='fill' objectFit='contain' className='icon overflow-hidden align-top'
-                          src="/services/crmIcon.svg" />
+                      <Image alt="CRM Icon" fill layout='fill' objectFit='contain' className='icon overflow-hidden align-top'
+                        src="/services/crmIcon.svg" />
                     </div>
                     <h4 className='color-primary uppercase'>CRM</h4>
                     <p>Building a CRM application for your business needs tailored to your business model or developing on top of an existing solution</p>
@@ -170,53 +282,55 @@ export default function Home({ portfolio, contributions }: InferGetServerSidePro
           }
         </section>
         <section id="pricing" className='bg-primary py-20'>
-          <Tooltip text='dummy text' visiblity={tooltipVisiblity} />
+          <Tooltip text={tooltipText} visiblity={tooltipVisiblity} />
           <h2 className='text-base uppercase spacing tracking-widest text-white text-center mb-20'>experiences</h2>
           <div className='container mx-auto pt-6 px-8'>
-            <div className='text-center grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:px-36'>
+            <div className='text-center text-xl grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:px-20'>
               <div className='mx-auto'>
-                <div className={`experience-box relative opacity-100 lg:opacity-25 lg:translate-y-[5%] ${(isExpirienceDivVisible ? "lg:!translate-y-[0%] lg:!opacity-100" : "")}`}>
-                  <h3 className='uppercase text-base relative z-30 text-[#777]'>Basic</h3>
+                <div className={`experience-box relative opacity-100 lg:opacity-25 lg:translate-x-9 lg:translate-y-[5%] ${(isExpirienceDivVisible ? "lg:!translate-y-[0%] lg:!opacity-100" : "")}`}>
+                  <h3 className='uppercase text-2xl relative z-30 text-[#777]'>Hobby</h3>
                   <ul className='feature-list'>
-                    <li onMouseOver={() => setTooltipVisiblity(true)} onMouseOut={() => setTooltipVisiblity(false)} className="cursor-pointer">Website Audit</li>
-                    <li>Design</li>
-                    <li>Development</li>
+                    <li onMouseOver={() => EnableTooltip("The application had voice call capabilities with RSA and ECHA encrytion, opus was used to encode the packets")} onMouseOut={() => setTooltipVisiblity(false)} className="cursor-pointer">Meeting application like Zoom(when COVID hit)</li>
+                    <li><a href='https://amunim.itch.io/robos-jailbreak'>Honourable Mention in N3rkMind gamejam</a></li>
+                    <li><a href='https://izanamiworkshop.itch.io/chick-n-die'>Particapted in Ludam Dare</a></li>
+                    <li><a href='https://www.upwork.com/freelancers/~016f42c0501a199670?p=1377856912245268480'>Pluralsight 251 Expert Score C# Assessment</a></li>
                   </ul>
-                  <div>
+                  {/* <div>
                     <a href='#portfolio' className='btn btn-sm mt-4 btn-gray hover:bg-black hover:text-white '>Request quote</a>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className='mx-auto'>
                 <div className={`experience-box relative opacity-100 lg:opacity-25  before:bg-[#7205f7] after:bg-[#5826a082] lg:translate-y-[15%] ${(isExpirienceDivVisible ? "lg:!translate-y-[5%] lg:!opacity-100" : "")}`}>
-                  <h3 className='uppercase text-base relative z-30 text-white'>Basic</h3>
+                  <h3 className='uppercase text-2xl relative z-30 text-white'><a className='underline underline-offset-2 decoration-dotted hover:decoration-wavy hover:text-gray-600' href='https://www.upwork.com/freelancers/~016f42c0501a199670'>Upwork</a></h3>
                   <ul className='feature-list'>
-                    <li>Website Audit</li>
-                    <li>Design</li>
-                    <li>Development</li>
-                    <li>Website Audit</li>
-                    <li>Design</li>
-                    <li>Development</li>
-                    <li>Website Audit</li>
-                    <li>Design</li>
-                    <li>Development</li>
+                    <li>More than 17 jobs</li>
+                    <li>Top Rated Freelancer with 100% Job Success Score(yet)</li>
+                    <li>Working since late 2021</li>
+                    <li>Referral tracker system on discord server</li>
+                    <li>Restaurant Client System</li>
+                    <li><a href='https://mentorflight-production.up.railway.app/route'>Mentor Flight</a></li>
+                    <li><a href='https://flagsmith.com/blog/net-feature-flag/'>.Net Feature Flags article on Flagsmith</a></li>
+                    <li>Integration of stream trading API and referral system on a project</li>
+                    <li>Gift Card Balance Checker of Wallmart, Home Depot and Bed, Bath and Beyond</li>
+                    <li>Application to monitor keywords from RSS flux and paste by simulating mouse and keyboard</li>
                   </ul>
-                  <div>
+                  {/* <div>
                     <a href='#portfolio' className='btn btn-sm mt-4 btn-primary'>Request quote</a>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className='mx-auto'>
                 <div ref={expirienceRef} className={`experience-box relative before:bg-[#ffcd00] opacity-100 lg:opacity-25 after:bg-[#e4ba34] lg:translate-y-[25%] ${(isExpirienceDivVisible ? "lg:!translate-y-[10%] lg:!opacity-100" : "")}`}>
-                  <h3 className='uppercase text-base relative z-30 text-white'>Basic</h3>
+                  <h3 className='uppercase text-2xl relative z-30 text-white'>Magical Digits</h3>
                   <ul className='feature-list'>
-                    <li>Website Audit</li>
-                    <li>Design</li>
-                    <li>Development</li>
-                    <li>Website Audit</li>
-                    <li>Design</li>
-                    <li>Development</li>
-                    <li>Website Audit</li>
+                    <li>Worked for almost an year</li>
+                    <li><a href='https://crystalcabins.com/'>Lead Back-end dev on migrating classic ASP rentals site to ASP.Net/Next.js</a></li>
+                    <li>Later promoted to lead Full-Stack developer on the project</li>
+                    <li>Added branches module to opticofy</li>
+                    <li>Created accounting application to manage payments and generate reports</li>
+                    <li>Created a flutter application to time prayer</li>
+                    <li><a href='https://stackoverflow.com/users/9138440/amunim'>Acheived ~700 score on StackOverflow</a></li>
                     <li>Design</li>
                     <li>Development</li>
                     <li>Website Audit</li>
@@ -226,9 +340,9 @@ export default function Home({ portfolio, contributions }: InferGetServerSidePro
                     <li>Design</li>
                     <li>Development</li>
                   </ul>
-                  <div>
+                  {/* <div>
                     <a href='#portfolio' className='btn btn-sm mt-4 !text-[#FFF] border-[#ffcb05] bg-[#ffcb05]'>Request quote</a>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
