@@ -201,6 +201,13 @@ html {
     transition: transform ease-in 0.65s, opacity ease-in 0.2s;
 }
 
+@media only screen and (max-width: 800px) {
+    .experience-box {
+        max-width: 15rem;
+        margin-top: 2rem;
+    }
+}
+
 @media only screen and (min-width: 600px) {
     .experience-box {
         opacity: 0.25;
@@ -283,4 +290,9 @@ html {
 
 .footer-navbar a:hover {
     color: #3a25a8;
+}
+
+.style-anchor-below a {
+    color: blue;
+    text-decoration: underline;
 }

@@ -15,29 +15,40 @@ const getPortfolioItems: () => Promise<PortfolioParams[]> = () => {
     return Promise.resolve([
         {
             Id: 1,
-            title: "Marker.io",
-            previewLink: "#main",
-            description: "Collect client feedback and report bugs into Jira, Trello, Asana, Github directly from your site with screenshots, annotations, console logs, and more.",
+            title: "Sunspots/Crystal Cabin/Goldener Inns",
+            previewLink: "https://goldenerinns.com/",
+            description: `Online Rentals, booking houses, units, complexes for multiple nightes. Displaying data calendar, member details, news, blogs and everything in between like checkout all on different domains with multiple units featuring on a range of domains powered by a single monolithic back-end.
+Bookings can also arrive from airbnb, booking and other houdini sites(independant website for a specific unit).
+A few domains are:  
+    - [Goldener Inns](https://goldenerinns.com)
+    - [Crystal Cabins](https://crystalcabins.com/)  
+    - [Bedfinders](https://bedfinders.com)
+    - [101escapes](https://101escapes.com)
+    - [Arrow Point Condos](https://arrowpointcondos.com)
+    - [Sweet Caroline Inn](https://sweetcarolineinn.com)
+    - [Criss Cross Condo](https://crisscrosscondo.com)
+    - [All Points Central](https://allpointscentral.com)
+    `,
             year: "Recommmended",
-            videoLink: "#main",
-            posterLink: "",
-            visitLink: "#main"
+            videoLink: "",
+            posterLink: "/portfolio/goldener.gif",
+            visitLink: "https://crystalcabins.com/"
         },
         {
             Id: 2,
             title: "Simple Accounting",
             previewLink: "#main",
             description: `A simple accounting software to create invoices, JV/Bank Voucher/Cash Voucher. Project/Customer wise reports or vouchers. Reporting such as
-    Audit Trail
-    Trail Balance
-    Income Expense
-    Controlling Balance
-    Yearly Comparision (Expense)
-    Project wise Accounts Summary
-    Project wise Non Expense Accounts summary`,
+    - Audit Trail
+    - Trail Balance
+    - Income Expense
+    - Controlling Balance
+    - Yearly Comparision (Expense)
+    - Project wise Accounts Summary
+    - Project wise Non Expense Accounts summary`,
             year: "2022",
-            videoLink: "/portfolio/accounting.mp4",
-            posterLink: "",
+            posterLink: "/portfolio/accounting.gif",
+            videoLink: "",
             visitLink: "#main"
         },
         {

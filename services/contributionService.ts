@@ -31,13 +31,25 @@ const getContributionItems: () => Promise<ContributionParams[]> = () =>
             {
               title: "Custom Electron Prompt",
               description: `Custom prompt for Electron made easy with various templates
-
+              
               There are currently 5 types available: Input / Keybind / Counter / Select / MultiInput
               
               There is also an option for a button with user-defined onclick function.`,
               link: "https://github.com/Araxeus/custom-electron-prompt",
               language: "Javascript",
               languageColor: "#F1E05A"
+            },
+            {
+              title: "Flagsmith blog",
+              description: `Behind the technical writing article for flagsmith.
+              
+              Flagsmith is a feature management platform that allows you to fully test and control features simply by flicking a toggle
+              
+              The article features a step-by-step tutorial on how to configure and use flagsmith along with tips on best practices leveraging my experience and fondness of C# into words.
+              One of the highlight of the article was t4 templates to import flags from flagsmith in .cs files as enums.`,
+              link: "https://www.flagsmith.com/blog/net-feature-flag",
+              language: "C#",
+              languageColor: "#21C861"
             },
           ]
     );
