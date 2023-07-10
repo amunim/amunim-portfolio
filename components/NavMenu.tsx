@@ -53,7 +53,7 @@ export default function NavMenu() {
                             PORTFOLIO
                         </a>
                         <a onClick={() => isMobile && onMenuClick()} href="#pricing" className={styles['menu_button']}>
-                            EXPIRIENCES
+                            EXPERIENCES
                         </a>
                         <a onClick={() => isMobile && onMenuClick()} href="#contributions" className={styles['menu_button']}>
                             Contributions
