@@ -33,7 +33,6 @@ export default function NavMenu() {
             <div onClick={e => onMenuClick()} className='md:hidden fixed top-2 left-2 block w-8 h-8 z-[999999999] hover:cursor-pointer'>
                 <svg viewBox='0 0 10 8' width='40'>
                     <path d='M1 1h8M1 4h 8M1 7h8'
-                        // stroke='#fde047'
                         stroke='#8a8f7b'
                         stroke-width='1'
                         stroke-linecap='round' />
@@ -42,7 +41,7 @@ export default function NavMenu() {
             <div className={`${transform} absolute ${navBarPosition} md:py-7 max-md:h-full w-full md:top-0 bg-transparent headerMenu z-[10000]`}>
                 <nav className='max:md-w-[100%] max-md:h-[100vh] max-md:text-center max-md:bg-[#475569] flex flex-col md:flex-row justify-start md:justify-between md:px-16'>
                     <div id="header-logo" className='md:h-full font-bold pt-16 md:pt-0'>
-                        <div id='header-logo-icon' ></div>
+                        <div id='header-logo-icon'></div>
                         <a href='#main' className='text-white hover:underline'>amunim.me</a>
                     </div>
 

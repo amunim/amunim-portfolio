@@ -26,7 +26,7 @@ export default function Home({ portfolio, contributions }: InferGetServerSidePro
         <title>Abdul Munim | Software Engineer</title>
         <meta name="description" content="Software Engineer, Full-stack Web Developer, .Net developer" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.svg" />
+        {/* <link rel="icon" href="/favicon.svg" /> */}
       </Head>
 
       <header>
