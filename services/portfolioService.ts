@@ -35,6 +35,20 @@ A few domains are:
             visitLink: "https://crystalcabins.com/"
         },
         {
+            Id: 4,
+            title: "Bonoki",
+            previewLink: "https://play.google.com/store/apps/details?id=com.amfk.oyigula&pli=1",
+            description: `An automatic wallet that inserts data by SMS
+    Whenever you get a SMS the appropriate account gets updated with the latest transaction
+    Later you can tag, categorise the transactions.
+    Reporting tools such as summary, exporting to CSV, subscription based auto insertion records.
+    Multiple currencies, credit card, account numbers supported`,
+            year: "2023",
+            posterLink: "/portfolio/bonoki.gif",
+            videoLink: "",
+            visitLink: "https://play.google.com/store/apps/details?id=com.amfk.oyigula&pli=1"
+        },
+        {
             Id: 2,
             title: "Simple Accounting",
             previewLink: "#main",
