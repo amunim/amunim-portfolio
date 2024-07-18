@@ -34,8 +34,8 @@ export default function NavMenu() {
                 <svg viewBox='0 0 10 8' width='40'>
                     <path d='M1 1h8M1 4h 8M1 7h8'
                         stroke='#8a8f7b'
-                        stroke-width='1'
-                        stroke-linecap='round' />
+                        strokeWidth='1'
+                        strokeLinecap='round' />
                 </svg>
             </div>
             <div className={`${transform} absolute ${navBarPosition} md:py-7 max-md:h-full w-full md:top-0 bg-transparent headerMenu z-[10000]`}>

@@ -1,9 +1,9 @@
-import { type NextRequest, NextResponse } from 'next/server';
+import { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 
-export async function POST(request: NextRequest) {
-    const { email, name, message } = await request.json();
+export default async function POST(request: NextApiRequest, res: NextApiResponse) {
+    const { email, name, message } = await request.body;
 
     const transport = nodemailer.createTransport({
         service: 'gmail',
@@ -34,8 +34,8 @@ export async function POST(request: NextRequest) {
 
     try {
         await sendMailPromise();
-        return NextResponse.json({ message: 'Email sent' });
+        return res.json({ message: 'Email sent' });
     } catch (err) {
-        return NextResponse.json({ error: err }, { status: 500 });
+        return res.status(500).json({ error: err });
     }
 }
