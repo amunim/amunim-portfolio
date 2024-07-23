@@ -34,7 +34,7 @@ A few domains are:
             posterLink: "/portfolio/goldener.gif",
             visitLink: "https://crystalcabins.com/"
         },
-        {
+        /*{
             Id: 4,
             title: "Bonoki",
             previewLink: "https://play.google.com/store/apps/details?id=com.amfk.oyigula&pli=1",
@@ -47,7 +47,7 @@ A few domains are:
             posterLink: "/portfolio/bonoki.gif",
             videoLink: "",
             visitLink: "https://play.google.com/store/apps/details?id=com.amfk.oyigula&pli=1"
-        },
+        },*/
         {
             Id: 2,
             title: "Simple Accounting",
