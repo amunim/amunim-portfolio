@@ -7,12 +7,26 @@ export type PortfolioParams = {
     videoLink: string,
     previewLink: string,
     visitLink: string,
+    previewText?: string
 }
 
 const getPortfolioItems: () => Promise<PortfolioParams[]> = () => {
     //perhaps call an API to get the items
 
     return Promise.resolve([
+        {
+            Id: 5,
+            title: "Zid Sheets Integration",
+            previewLink: "https://zidsheets.amunim.me/en/privacy-policy",
+            previewText: "Privacy Policy",
+            description: `A low code solution that integrate zid (shopify for the middle east) stores with google sheets.
+            Easily export all your orders, customers, carts to selected sheets with a very simple UI/UX in real-time.
+            App features english and arabic support.`,
+            year: "Recommmended",
+            videoLink: "https://zidsheets.amunim.me/en/sheet-preview.mp4",
+            posterLink: "",
+            visitLink: "https://zidsheets.amunim.me/"
+        },
         {
             Id: 1,
             title: "Sunspots/Crystal Cabin/Goldener Inns",
