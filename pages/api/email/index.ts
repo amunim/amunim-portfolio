@@ -27,7 +27,7 @@ export default async function POST(request: NextApiRequest, res: NextApiResponse
 
     const mailOptions: Mail.Options = {
         from: process.env.APP_EMAIL,
-        to: process.env.APP_EMAIL,
+        to: process.env.APP_TO_EMAIL,
         // cc: email,
         subject: `Message from ${name} (${email})`,
         text: message,

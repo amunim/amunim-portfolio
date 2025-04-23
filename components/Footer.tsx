@@ -1,5 +1,5 @@
 import { sendEmail } from "@/utils/send-email";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 export type FormData = {
@@ -22,6 +22,7 @@ export default function Footer() {
   const { register, handleSubmit, reset, watch } = useForm<FormData>();
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const email = watch('email');
 
   useEffect(() => {
@@ -35,11 +36,11 @@ export default function Footer() {
     loadRecaptcha();
   }, []);
 
-  const checkRateLimit = (userEmail: string): { allowed: boolean; resetTime?: Date } => {
+  const checkRateLimit = useCallback((userEmail: string): { allowed: boolean; resetTime?: Date } => {
     const now = Date.now();
     const stored = localStorage.getItem(RATE_LIMIT_KEY);
     let rateLimits: Record<string, RateLimitData> = {};
-    
+
     if (stored) {
       rateLimits = JSON.parse(stored);
       // Clean up old entries
@@ -61,9 +62,9 @@ export default function Footer() {
     }
 
     return { allowed: true };
-  };
+  }, []);
 
-  const updateRateLimit = (userEmail: string) => {
+  const updateRateLimit = useCallback((userEmail: string) => {
     const now = Date.now();
     const stored = localStorage.getItem(RATE_LIMIT_KEY);
     let rateLimits: Record<string, RateLimitData> = stored ? JSON.parse(stored) : {};
@@ -79,25 +80,28 @@ export default function Footer() {
     }
 
     localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(rateLimits));
-  };
+  }, []);
 
   async function onSubmit(data: FormData) {
     setError(null);
     setSuccess(null);
-    
+    setIsLoading(true);
+
     if (!data.email) {
       setError('Email is required');
+      setIsLoading(false);
       return;
     }
 
     const rateLimit = checkRateLimit(data.email);
     if (!rateLimit.allowed) {
       setError(`Too many emails. Please try again after ${rateLimit.resetTime?.toLocaleTimeString()}`);
+      setIsLoading(false);
       return;
     }
-    
+
     try {
-      const token = await(window as any).grecaptcha.execute(process.env.NEXT_PUBLIC_RE_SITE_KEY, { action: "submit" });
+      const token = await (window as any).grecaptcha.execute(process.env.NEXT_PUBLIC_RE_SITE_KEY, { action: "submit" });
       const response = await fetch('/api/email', {
         method: 'POST',
         body: JSON.stringify({ ...data, token }),
@@ -105,22 +109,24 @@ export default function Footer() {
           'Content-Type': "application/json"
         }
       });
-      
+
       const result = await response.json();
-      
+
       if (!response.ok) {
         setError(result.error || 'Failed to send email');
         return;
       }
-      
+
       updateRateLimit(data.email);
       setSuccess('Message sent successfully!');
       reset();
     } catch (err) {
       setError('Failed to send message. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
   }
-  
+
   return (
     <footer id='contact'>
       <div className='lg:w-[35rem] md:w-[25rem] sm:w-[21rem] w-[15rem] mx-auto mt-3 pb-12'>
@@ -163,7 +169,13 @@ export default function Footer() {
             </textarea>
           </fieldset>
           <div className='text-center'>
-            <input type="submit" className='btn btn-primary' />
+            <button
+              type="submit"
+              className='btn btn-primary disabled:opacity-50 disabled:cursor-not-allowed'
+              disabled={isLoading}
+            >
+              {isLoading ? 'Sending...' : 'Send Message'}
+            </button>
           </div>
         </form>
       </div>
