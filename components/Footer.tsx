@@ -1,5 +1,5 @@
 import { sendEmail } from "@/utils/send-email";
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 export type FormData = {
@@ -9,8 +9,20 @@ export type FormData = {
   token: string;
 };
 
+const RATE_LIMIT_KEY = 'email_rate_limit';
+const MAX_EMAILS_PER_HOUR = 3;
+const HOUR_IN_MS = 60 * 60 * 1000;
+
+interface RateLimitData {
+  count: number;
+  firstAttempt: number;
+}
+
 export default function Footer() {
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit, reset, watch } = useForm<FormData>();
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+  const email = watch('email');
 
   useEffect(() => {
     const loadRecaptcha = () => {
@@ -23,17 +35,100 @@ export default function Footer() {
     loadRecaptcha();
   }, []);
 
-  async function onSubmit(data: FormData) {
-    const token = await(window as any).grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action: "submit" });
+  const checkRateLimit = (userEmail: string): { allowed: boolean; resetTime?: Date } => {
+    const now = Date.now();
+    const stored = localStorage.getItem(RATE_LIMIT_KEY);
+    let rateLimits: Record<string, RateLimitData> = {};
+    
+    if (stored) {
+      rateLimits = JSON.parse(stored);
+      // Clean up old entries
+      Object.keys(rateLimits).forEach(key => {
+        if (now - rateLimits[key].firstAttempt > HOUR_IN_MS) {
+          delete rateLimits[key];
+        }
+      });
+    }
 
-    sendEmail({ ...data, token });
+    const userLimit = rateLimits[userEmail];
+    if (userLimit) {
+      if (now - userLimit.firstAttempt > HOUR_IN_MS) {
+        delete rateLimits[userEmail];
+      } else if (userLimit.count >= MAX_EMAILS_PER_HOUR) {
+        const resetTime = new Date(userLimit.firstAttempt + HOUR_IN_MS);
+        return { allowed: false, resetTime };
+      }
+    }
+
+    return { allowed: true };
+  };
+
+  const updateRateLimit = (userEmail: string) => {
+    const now = Date.now();
+    const stored = localStorage.getItem(RATE_LIMIT_KEY);
+    let rateLimits: Record<string, RateLimitData> = stored ? JSON.parse(stored) : {};
+
+    if (rateLimits[userEmail]) {
+      if (now - rateLimits[userEmail].firstAttempt > HOUR_IN_MS) {
+        rateLimits[userEmail] = { count: 1, firstAttempt: now };
+      } else {
+        rateLimits[userEmail].count += 1;
+      }
+    } else {
+      rateLimits[userEmail] = { count: 1, firstAttempt: now };
+    }
+
+    localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(rateLimits));
+  };
+
+  async function onSubmit(data: FormData) {
+    setError(null);
+    setSuccess(null);
+    
+    if (!data.email) {
+      setError('Email is required');
+      return;
+    }
+
+    const rateLimit = checkRateLimit(data.email);
+    if (!rateLimit.allowed) {
+      setError(`Too many emails. Please try again after ${rateLimit.resetTime?.toLocaleTimeString()}`);
+      return;
+    }
+    
+    try {
+      const token = await(window as any).grecaptcha.execute(process.env.NEXT_PUBLIC_RE_SITE_KEY, { action: "submit" });
+      const response = await fetch('/api/email', {
+        method: 'POST',
+        body: JSON.stringify({ ...data, token }),
+        headers: {
+          'Content-Type': "application/json"
+        }
+      });
+      
+      const result = await response.json();
+      
+      if (!response.ok) {
+        setError(result.error || 'Failed to send email');
+        return;
+      }
+      
+      updateRateLimit(data.email);
+      setSuccess('Message sent successfully!');
+      reset();
+    } catch (err) {
+      setError('Failed to send message. Please try again.');
+    }
   }
+  
   return (
     <footer id='contact'>
       <div className='lg:w-[35rem] md:w-[25rem] sm:w-[21rem] w-[15rem] mx-auto mt-3 pb-12'>
         <div className='text-center text-9xl'>
           <h1>Get in touch</h1>
         </div>
+        {error && <div className="text-red-500 mb-4 text-center">{error}</div>}
+        {success && <div className="text-green-500 mb-4 text-center">{success}</div>}
         <form onSubmit={handleSubmit(onSubmit)}>
           <fieldset>
             <div className='mb-6'>
@@ -92,5 +187,5 @@ export default function Footer() {
         </ul>
       </div>
     </footer>
-  )
+  );
 }

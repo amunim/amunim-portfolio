@@ -13,7 +13,7 @@ export default async function POST(request: NextApiRequest, res: NextApiResponse
         body: `secret=${secret}&response=${token}`,
     });
     const data = await response.json();
-    if (!data.success)
+    if (!data.success || data.score < 0.5) // Check if the score is less than 0.5
         return res.status(400).json({ error: 'Captcha verification failed' });
 
 
