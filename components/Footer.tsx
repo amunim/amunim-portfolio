@@ -1,17 +1,32 @@
 import { sendEmail } from "@/utils/send-email";
+import { useRef, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 export type FormData = {
   name: string;
   email: string;
   message: string;
+  token: string;
 };
 
 export default function Footer() {
   const { register, handleSubmit } = useForm<FormData>();
 
-  function onSubmit(data: FormData) {
-    sendEmail(data);
+  useEffect(() => {
+    const loadRecaptcha = () => {
+      const script = document.createElement("script");
+      script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RE_SITE_KEY}`;
+      script.async = true;
+      document.head.appendChild(script);
+    };
+
+    loadRecaptcha();
+  }, []);
+
+  async function onSubmit(data: FormData) {
+    const token = await(window as any).grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action: "submit" });
+
+    sendEmail({ ...data, token });
   }
   return (
     <footer id='contact'>

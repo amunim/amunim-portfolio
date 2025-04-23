@@ -3,7 +3,19 @@ import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 
 export default async function POST(request: NextApiRequest, res: NextApiResponse) {
-    const { email, name, message } = await request.body;
+    const { email, name, message, token } = await request.body;
+
+    // recaptcha verify
+    const secret = process.env.RE_SECRET_KEY!;
+    const response = await fetch(`https://www.google.com/recaptcha/api/siteverify`, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `secret=${secret}&response=${token}`,
+    });
+    const data = await response.json();
+    if (!data.success)
+        return res.status(400).json({ error: 'Captcha verification failed' });
+
 
     const transport = nodemailer.createTransport({
         service: 'gmail',
