@@ -135,7 +135,7 @@ export default function Footer() {
         </div>
         {error && <div className="text-red-500 mb-4 text-center">{error}</div>}
         {success && <div className="text-green-500 mb-4 text-center">{success}</div>}
-        <form onSubmit={handleSubmit(onSubmit)}>
+        {/* <form onSubmit={handleSubmit(onSubmit)}>
           <fieldset>
             <div className='mb-6'>
               <div className='uppercase text-[#9c9c9c] mb-2'>
@@ -177,7 +177,7 @@ export default function Footer() {
               {isLoading ? 'Sending...' : 'Send Message'}
             </button>
           </div>
-        </form>
+        </form> */}
       </div>
       <div className='mb-32'>
         <ul className='flex flex-col md:flex-row justify-center align-middle footer-navbar text-[#9c9c9c]'>

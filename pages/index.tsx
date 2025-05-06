@@ -10,6 +10,7 @@ import IndexPricingSection from '@/components/indexPage/IndexPricingSection'
 import IndexContributionsSection from '@/components/indexPage/IndexContributionsSections'
 import IndexIntroSection from '@/components/indexPage/IndexIntroSection'
 import { getIsSsrMobile } from '@/hooks/useIsMobile'
+import TawkIntegration from '@/components/TawkIntegration'
 
 export const getServerSideProps: GetServerSideProps<{ portfolio: PortfolioParams[], contributions: ContributionParams[] }> = async (context) => {
   const portfolio: PortfolioParams[] = await getPortfolioItems();
@@ -33,6 +34,7 @@ export default function Home({ portfolio, contributions }: InferGetServerSidePro
         <NavMenu />
       </header>
       <main id='main' className='bg-white w-full -pt-8'>
+        <TawkIntegration />
         <IndexIntroSection />
         <IndexServices />
         <IndexPortfolioSection portfolioItems={portfolio} />
