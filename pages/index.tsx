@@ -33,10 +33,10 @@ export default function Home({ portfolio, contributions }: InferGetServerSidePro
       <header>
         <NavMenu />
       </header>
-      <main id='main' className='bg-white w-full -pt-8'>
+      <main id='main' className='bg-[#EEEEEE] w-full -pt-8'>
         <TawkIntegration />
         <IndexIntroSection />
-        <IndexServices />
+        {/* <IndexServices /> */}
         <IndexPortfolioSection portfolioItems={portfolio} />
         <IndexPricingSection />
         <IndexContributionsSection contributions={contributions} />

@@ -8,6 +8,11 @@
     --primary-light: #5b43d644;
 }
 
+* {
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+}
+
 html {
     overflow-x: hidden;
 }
@@ -121,15 +126,6 @@ p {
 
 html {
     scroll-behavior: smooth;
-}
-
-.sticky {
-    position: fixed !important;
-    background-color: #475569;
-    border-bottom: #00000080 2px solid;
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
-    z-index: 10000;
 }
 
 .badge {

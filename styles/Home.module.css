@@ -1,36 +1,4 @@
-.menu_button {
-  color: white;
-  padding: 0 1rem;
-}
-
-.menu_button:hover {
-  cursor: pointer;
-  color: #ffcb05
-}
-
-@media (max-width: 768px) {
-  .menu_button {
-    padding: 1rem;
-  }
-}
-
-#intro::before {
-  content: ' ';
-  top: 0;
-  right: 0;
-  left: 0;
-  opacity: 0.2;
-  position: absolute;
-  z-index: 1;
-  background-size: cover;
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjExLjY3MiAyMS40NDQgMTgzOCAyOTYuNiI+CiAgPHBhdGggZD0iTSAxODUwIDMxOCBMIDE3OTAgMjk2LjcgQyAxNzMwIDI3NSAxNjEwIDIzMyAxNDkwIDIwNiBDIDEzNzAgMTc5IDEyNTAgMTY5IDExMzAgMTkwIEMgMTAxMCAyMTEgODkwIDI2NSA3NzAgMjcwIEMgNjUwIDI3NSA1MzAgMjMzIDQ3MCAyMTEuMyBMIDQxMCAxOTAgTCAxMS42NzIgMjEuNDQ0IEwgNDcwIDMwIEMgNTMwIDMwIDY1MCAzMCA3NzAgMzAgQyA4OTAgMzAgMTAxMCAzMCAxMTMwIDMwIEMgMTI1MCAzMCAxMzcwIDMwIDE0OTAgMzAgQyAxNjEwIDMwIDE3MzAgMzAgMTc5MCAzMCBMIDE4NTAgMzAgWiIgZmlsbD0iIzE1MjM0MiIvPgo8L3N2Zz4=);
-  background-position: center bottom;
-  height: 100px;
-}
-
 #intro {
-  /* background: linear-gradient(to bottom, #7a19f1, #332179); */
-  background: linear-gradient(to bottom, rgb(71 85 105), rgb(30 41 59));
   position: relative;
   z-index: 5;
   display: block;
@@ -65,11 +33,6 @@
   }
 }
 
-
-#intro_inner {
-  padding: 60px 0;
-}
-
 #intro_inner::after {
   content: ' ';
   right: 0;
@@ -82,25 +45,4 @@
   background-position: center top;
   background-size: cover;
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxNDQwIDMyMCc+PHBhdGggZmlsbD0nI2ZmZmZmZicgZmlsbC1vcGFjaXR5PScxJyBkPSdNMCwyMjRMNjAsMjAyLjdDMTIwLDE4MSwyNDAsMTM5LDM2MCwxMjhDNDgwLDExNyw2MDAsMTM5LDcyMCwxNDkuM0M4NDAsMTYwLDk2MCwxNjAsMTA4MCwxMzguN0MxMjAwLDExNywxMzIwLDc1LDEzODAsNTMuM0wxNDQwLDMyTDE0NDAsMzIwTDEzODAsMzIwQzEzMjAsMzIwLDEyMDAsMzIwLDEwODAsMzIwQzk2MCwzMjAsODQwLDMyMCw3MjAsMzIwQzYwMCwzMjAsNDgwLDMyMCwzNjAsMzIwQzI0MCwzMjAsMTIwLDMyMCw2MCwzMjBMMCwzMjBaJz48L3BhdGg+PC9zdmc+);
-}
-
-#intro_divider::after {
-  content: ' ';
-  right: 0;
-  left: 0;
-  height: 78px;
-  position: absolute;
-  z-index: -50;
-  background-position: center top;
-  background-size: cover;
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxNjc5IDE5OC42Jz48cGF0aCBkPSdNODM5LjUgOTYuN0M0ODUuMyA5Ni43IDE3NC41IDU3LjkgMCAwdjE5OC42aDE2NzlWMGMtMTc0LjUgCTU3LjktNDg1LjMgOTYuNy04MzkuNSA5Ni43eicgZmlsbD0nI2ZmZicvPjwvc3ZnPg==);
-}
-
-.secondary-button {
-  background: linear-gradient(180deg, #f2cf00 0%, #f2b200 100%);
-  box-shadow: 0px 2px 3px rgba(0, 0, 0, 50%);
-}
-
-.secondary-button:hover {
-  background: linear-gradient(180deg, #ffdc0d 0%, #ffbf0d 100%);
 }
