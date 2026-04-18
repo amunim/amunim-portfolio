@@ -1,4 +1,9 @@
-import { FormData } from "@/components/Footer";
+export type FormData = {
+  name: string;
+  email: string;
+  message: string;
+  token: string;
+};
 
 export function sendEmail(data: FormData) {
     const apiEndpoint = '/api/email';

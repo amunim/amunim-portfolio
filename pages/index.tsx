@@ -1,47 +1,35 @@
-import Head from 'next/head'
-import NavMenu from '@/components/NavMenu'
-import { getPortfolioItems, PortfolioParams } from '@/services/portfolioService'
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { ContributionParams, getContributionItems } from '@/services/contributionService'
-import Footer from '@/components/Footer'
-import IndexServices from '@/components/indexPage/IndexServicesSection'
-import IndexPortfolioSection from '@/components/indexPage/IndexPortfolioSection'
-import IndexPricingSection from '@/components/indexPage/IndexPricingSection'
-import IndexContributionsSection from '@/components/indexPage/IndexContributionsSections'
-import IndexIntroSection from '@/components/indexPage/IndexIntroSection'
-import { getIsSsrMobile } from '@/hooks/useIsMobile'
-import TawkIntegration from '@/components/TawkIntegration'
+import Head from "next/head";
+import NavMenu from "@/components/NavMenu";
+import Footer from "@/components/Footer";
+import IndexHeroSection from "@/components/indexPage/IndexHeroSection";
+import IndexMetricsSection from "@/components/indexPage/IndexMetricsSection";
+import IndexCapabilitiesSection from "@/components/indexPage/IndexCapabilitiesSection";
+import IndexEcosystemSection from "@/components/indexPage/IndexEcosystemSection";
+import IndexInterfaceSection from "@/components/indexPage/IndexInterfaceSection";
+import IndexCaseStudiesSection from "@/components/indexPage/IndexCaseStudiesSection";
+import IndexContactSection from "@/components/indexPage/IndexContactSection";
 
-export const getServerSideProps: GetServerSideProps<{ portfolio: PortfolioParams[], contributions: ContributionParams[] }> = async (context) => {
-  const portfolio: PortfolioParams[] = await getPortfolioItems();
-  const contributions: ContributionParams[] = await getContributionItems();
-  return {
-    props: { portfolio, contributions, isSsrMobile: getIsSsrMobile(context) }
-  }
-}
-
-export default function Home({ portfolio, contributions }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Home() {
   return (
     <>
       <Head>
-        <title>Abdul Munim | Software Engineer</title>
-        <meta name="description" content="Software Engineer, Full-stack Web Developer, .Net developer" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* <link rel="icon" href="/favicon.svg" /> */}
+        <title>amunim.me | Software Engineering</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
-      <header>
-        <NavMenu />
-      </header>
-      <main id='main' className='bg-[#EEEEEE] w-full -pt-8'>
-        <TawkIntegration />
-        <IndexIntroSection />
-        {/* <IndexServices /> */}
-        <IndexPortfolioSection portfolioItems={portfolio} />
-        <IndexPricingSection />
-        <IndexContributionsSection contributions={contributions} />
-        <Footer />
+      <NavMenu />
+
+      <main className="max-w-7xl mx-auto px-6 lg:px-12 pt-16 mt-6">
+        <IndexHeroSection />
+        <IndexMetricsSection />
+        <IndexCapabilitiesSection />
+        <IndexEcosystemSection />
+        {/* <IndexInterfaceSection /> */}
+        <IndexCaseStudiesSection />
+        <IndexContactSection />
       </main>
+
+      <Footer />
     </>
-  )
+  );
 }
