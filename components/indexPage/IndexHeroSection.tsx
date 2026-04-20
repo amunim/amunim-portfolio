@@ -1,85 +1,92 @@
+import { IconDownload } from "@tabler/icons-react";
+import Badge from "../Badge";
+
 export default function IndexHeroSection() {
     return (
         <section className="flex flex-col items-center text-center pt-16 pb-32 relative">
-            <div className="absolute -top-full -left-full inset-0 blueprint-line opacity-20 pointer-events-none w-[200vw]"></div>
-            <div className="relative w-full flex flex-col items-center">
-                {/* Floating Technical UI Elements */}
-                <div className="hidden xl:block absolute inset-0 pointer-events-none">
-                    {/* Primary Stack Cluster */}
-                    <div className="absolute top-[5%] right-[2%] bg-white/60 backdrop-blur-md p-4 rounded-xl border border-primary/10 shadow-sm pointer-events-auto">
-                        <div className="flex items-center gap-2 mb-3">
-                            <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                            <h5 className="text-[9px] font-bold text-outline uppercase tracking-widest">Stack Specification 01</h5>
+            <div className="skew-x-6 absolute -top-full -left-full inset-0 blueprint-line opacity-20 pointer-events-none w-[200vw]"></div>
+            <div className="skew-x-6 flex flex-col items-center text-center">
+                <div className="relative w-full flex flex-col items-center">
+                    {/* Floating Technical UI Elements */}
+                    <div className="hidden xl:block absolute inset-0 pointer-events-none">
+                        {/* Primary Stack Cluster */}
+                        <div className="absolute top-0 right-0 bg-white/60 backdrop-blur-md p-4 rounded-xl border border-primary/10 shadow-xl pointer-events-auto">
+                            <div className="flex items-center gap-2 mb-3">
+                                <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                <h5 className="text-[9px] font-bold text-outline uppercase tracking-widest">Stack Specification 01</h5>
+                            </div>
+                            <div className="grid grid-cols-2 gap-2">
+                                <div className="flex flex-col items-start px-2 py-1 bg-white border border-surface-container-high rounded-full">
+                                    <span className="text-[8px] font-black text-primary opacity-50 uppercase">Framework</span>
+                                    <span className="text-[11px] font-bold text-on-surface">Next.js</span>
+                                </div>
+                                <div className="flex flex-col items-start px-2 py-1 bg-white border border-surface-container-high rounded-full">
+                                    <span className="text-[8px] font-black text-primary opacity-50 uppercase">Backend</span>
+                                    <span className="text-[11px] font-bold text-on-surface">Node.js</span>
+                                </div>
+                                <div className="flex flex-col items-start px-2 py-1 bg-white border border-surface-container-high rounded-full">
+                                    <span className="text-[8px] font-black text-primary opacity-50 uppercase">Infra</span>
+                                    <span className="text-[11px] font-bold text-on-surface">AWS Cloud</span>
+                                </div>
+                                <div className="flex flex-col items-start px-2 py-1 bg-white border border-surface-container-high rounded-full">
+                                    <span className="text-[8px] font-black text-primary opacity-50 uppercase">DB</span>
+                                    <span className="text-[11px] font-bold text-on-surface">PostgreSQL / MongoDB</span>
+                                </div>
+                            </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-2">
-                            <div className="flex flex-col items-start px-2 py-1 bg-white border border-surface-container-high rounded-full">
-                                <span className="text-[8px] font-black text-primary opacity-50 uppercase">Framework</span>
-                                <span className="text-[11px] font-bold text-on-surface">Next.js</span>
+
+                        {/* Distributed Systems Badge */}
+                        <div className="absolute top-[22%] left-[5%] flex items-center gap-3 bg-white border border-primary/20 px-4 py-3 rounded-full shadow-lg pointer-events-auto hover:bg-surface-container-low transition-colors">
+                            <div className="flex h-2 w-2 relative">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                             </div>
-                            <div className="flex flex-col items-start px-2 py-1 bg-white border border-surface-container-high rounded-full">
-                                <span className="text-[8px] font-black text-primary opacity-50 uppercase">Backend</span>
-                                <span className="text-[11px] font-bold text-on-surface">Node.js</span>
+                            <span className="text-[10px] font-bold text-primary tracking-[0.15em] uppercase">Distributed Systems Specialist</span>
+                        </div>
+
+                        {/* Webhook Architecture Fragment */}
+                        <div className="absolute bottom-[10%] right-[5%] bg-white p-5 rounded-2xl shadow-xl border border-primary/5 pointer-events-auto">
+                            <div className="flex items-center gap-4 mb-4">
+                                <span className="material-symbols-outlined text-primary text-xl">hub</span>
+                                <div className="h-[1px] w-8 bg-primary/20"></div>
+                                <span className="material-symbols-outlined text-outline text-xl opacity-50">api</span>
+                                <div className="h-[1px] w-8 bg-primary/20"></div>
+                                <span className="material-symbols-outlined text-primary text-xl">sync_alt</span>
                             </div>
-                            <div className="flex flex-col items-start px-2 py-1 bg-white border border-surface-container-high rounded-full">
-                                <span className="text-[8px] font-black text-primary opacity-50 uppercase">Infra</span>
-                                <span className="text-[11px] font-bold text-on-surface">AWS Cloud</span>
-                            </div>
-                            <div className="flex flex-col items-start px-2 py-1 bg-white border border-surface-container-high rounded-full">
-                                <span className="text-[8px] font-black text-primary opacity-50 uppercase">DB</span>
-                                <span className="text-[11px] font-bold text-on-surface">PostgreSQL / MongoDB</span>
+                            <div className="text-left">
+                                <h5 className="text-[10px] font-black text-on-surface uppercase tracking-wider">Live Sync Architecture</h5>
+                                <p className="text-[9px] text-outline font-medium mt-1">Multi-platform Webhook Ingestion</p>
                             </div>
                         </div>
                     </div>
 
-                    {/* Distributed Systems Badge */}
-                    <div className="absolute top-[22%] left-[5%] flex items-center gap-3 bg-white border border-primary/20 px-4 py-3 rounded-full shadow-lg pointer-events-auto hover:bg-surface-container-low transition-colors">
-                        <div className="flex h-2 w-2 relative">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                    {/* Headline with System Status Indicator */}
+                    <div className="relative inline-block z-10">
+                        <div className="absolute -top-10 left-1/2 -translate-x-1/2">
+                            <div className="animate-bounce flex items-center gap-2 px-3 py-1 bg-surface-container rounded-full border border-outline/10">
+                                <span className="text-[9px] font-bold text-outline-variant uppercase tracking-[0.2em]">Deployment Status: </span>
+                                <span className="text-[10px] font-black text-primary uppercase"><div className="animate-pulse bg-primary rounded-full w-2 h-2 content-[' '] inline-block"></div> Optimized</span>
+                            </div>
                         </div>
-                        <span className="text-[10px] font-bold text-primary tracking-[0.15em] uppercase">Distributed Systems Specialist</span>
+                        <h1 className="text-6xl lg:text-8xl font-extrabold tracking-tight leading-[1] text-on-surface max-w-5xl mb-8">
+                            Architecting <br /> Enterprise Resilience.
+                        </h1>
                     </div>
-
-                    {/* Webhook Architecture Fragment */}
-                    <div className="absolute bottom-[20%] right-[10%] bg-white p-5 rounded-2xl shadow-xl border border-primary/5 pointer-events-auto">
-                        <div className="flex items-center gap-4 mb-4">
-                            <span className="material-symbols-outlined text-primary text-xl">hub</span>
-                            <div className="h-[1px] w-8 bg-primary/20"></div>
-                            <span className="material-symbols-outlined text-outline text-xl opacity-50">api</span>
-                            <div className="h-[1px] w-8 bg-primary/20"></div>
-                            <span className="material-symbols-outlined text-primary text-xl">sync_alt</span>
-                        </div>
-                        <div className="text-left">
-                            <h5 className="text-[10px] font-black text-on-surface uppercase tracking-wider">Live Sync Architecture</h5>
-                            <p className="text-[9px] text-outline font-medium mt-1">Multi-platform Webhook Ingestion</p>
-                        </div>
-                    </div>
+                    <p className="text-xl text-on-surface-variant max-w-2xl leading-relaxed mb-10 relative z-10">
+                        Senior Software Engineer specializing in high-availability SaaS architectures.
+                        Building robust systems that scale with your business needs and technical complexity.
+                    </p>
                 </div>
 
-                {/* Headline with System Status Indicator */}
-                <div className="relative inline-block z-10">
-                    <div className="absolute -top-10 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 py-1 bg-surface-container rounded-full border border-outline/10">
-                        <span className="text-[9px] font-bold text-outline-variant uppercase tracking-[0.2em]">Deployment Status: </span>
-                        <span className="text-[10px] font-black text-primary uppercase"><div className="animate-pulse bg-primary rounded-full w-2 h-2 content-[' '] inline-block"></div> Optimized</span>
-                    </div>
-                    <h1 className="text-6xl lg:text-8xl font-extrabold tracking-tight leading-[1] text-on-surface max-w-5xl mb-8">
-                        Architecting <br /> Enterprise Resilience.
-                    </h1>
+                <div className="flex flex-col sm:flex-row items-center gap-4 mb-20 relative z-10">
+                    <button className="flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200">
+                        <IconDownload className="w-5 h-5" /> Download CV
+                    </button>
+                    <button className="bg-white text-on-surface border border-surface-container-high px-8 py-4 rounded-xl font-bold shadow-sm hover:bg-surface-container-low transition-all duration-200 flex items-center gap-2">
+                        <span className="material-symbols-outlined text-xl">calendar_today</span>
+                        Book Call
+                    </button>
                 </div>
-                <p className="text-xl text-on-surface-variant max-w-2xl leading-relaxed mb-10 relative z-10">
-                    Senior Software Engineer specializing in high-availability SaaS architectures.
-                    Building robust systems that scale with your business needs and technical complexity.
-                </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-center gap-4 mb-20 relative z-10">
-                <button className="bg-primary text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200">
-                    Download CV
-                </button>
-                <button className="bg-white text-on-surface border border-surface-container-high px-8 py-4 rounded-xl font-bold shadow-sm hover:bg-surface-container-low transition-all duration-200 flex items-center gap-2">
-                    <span className="material-symbols-outlined text-xl">calendar_today</span>
-                    Book Call
-                </button>
             </div>
 
             {/* Experience & Community Dashboard */}
@@ -98,7 +105,7 @@ export default function IndexHeroSection() {
                                     <div className="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-primary"></div>
                                     <div className="flex justify-between items-start mb-1">
                                         <h4 className="font-bold text-lg">iClosed</h4>
-                                        <span className="text-xs font-bold bg-primary/10 text-primary px-2 py-0.5 rounded">Present</span>
+                                        <Badge>Present</Badge>
                                     </div>
                                     <p className="text-sm font-semibold text-on-surface-variant">Software Engineer L1</p>
                                     <p className="text-xs text-outline mt-2 leading-relaxed">Developing core high-availability microservices and real-time synchronization engines.</p>
@@ -152,8 +159,8 @@ export default function IndexHeroSection() {
                 </div>
             </div>
 
-            <div className="mt-8 flex justify-center">
-                <div className="flex items-center gap-2 text-sm font-bold text-outline uppercase tracking-[0.2em]">
+            <div className="mt-8 flex justify-center -skew-x-6">
+                <div className="flex items-center gap-2 text-sm font-bold text-outline uppercase tracking-[0.2em] -translate-x-6">
                     &lt;&lt; Architecting Systems That Scale &gt;&gt;
                 </div>
             </div>

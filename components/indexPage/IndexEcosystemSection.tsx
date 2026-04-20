@@ -1,6 +1,6 @@
 export default function IndexEcosystemSection() {
     return (
-        <section className="mb-16" id="ecosystem">
+        <section className="mb-32" id="ecosystem">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                 <div className="max-w-xl">
                     <h2 className="text-3xl font-extrabold tracking-tight mb-4">Engineering Ecosystem</h2>
@@ -68,7 +68,7 @@ export default function IndexEcosystemSection() {
                 </div>
 
                 {/* Unified SaaS Inbox */}
-                <div className="md:col-span-3 bg-white rounded-3xl p-8 shadow-sm border border-surface-container-high flex flex-col justify-between hover:shadow-md transition-shadow group">
+                <div className="md:col-span-4 bg-white rounded-3xl p-8 shadow-sm border border-surface-container-high flex flex-col justify-between hover:shadow-md transition-shadow group">
                     <div className="flex justify-between items-center mb-6">
                         <div className="flex items-center gap-2">
                             <span className="text-[10px] font-bold bg-primary/10 text-primary px-2 py-0.5 rounded uppercase tracking-wider">iCLOSED</span>
@@ -115,7 +115,7 @@ export default function IndexEcosystemSection() {
                 </div>
 
                 {/* Lotte Chemicals */}
-                <div className="md:col-span-2 bg-white rounded-3xl p-8 shadow-sm border border-surface-container-high flex flex-col justify-between hover:shadow-md transition-shadow border-l-4 border-l-primary group">
+                <div className="md:col-span-3 bg-white rounded-3xl p-8 shadow-sm border border-surface-container-high flex flex-col justify-between hover:shadow-md transition-shadow border-l-4 border-l-primary group">
                     <div className="flex justify-between items-start mb-4">
                         <div>
                             <div className="flex items-center gap-2 mb-2">
@@ -137,7 +137,7 @@ export default function IndexEcosystemSection() {
                 </div>
 
                 {/* Enterprise Auth */}
-                <div className="md:col-span-2 bg-white rounded-3xl p-8 shadow-sm border border-surface-container-high flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden group">
+                <div className="md:col-span-3 bg-white rounded-3xl p-8 shadow-sm border border-surface-container-high flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden group">
                     <div className="flex items-center justify-between mb-6">
                         <span className="text-[10px] font-bold bg-primary/10 text-primary px-2 py-0.5 rounded tracking-wide uppercase">SECURITY</span>
                         <span className="material-symbols-outlined text-primary text-4xl group-hover:scale-110 transition-transform duration-500" style={{ fontVariationSettings: "'FILL' 1" }}>fingerprint</span>
@@ -155,7 +155,7 @@ export default function IndexEcosystemSection() {
                 </div>
 
                 {/* Canteen Tracking */}
-                <div className="md:col-span-2 bg-white rounded-3xl p-8 shadow-sm border border-surface-container-high flex flex-col justify-between hover:shadow-md transition-shadow group">
+                <div className="md:col-span-3 bg-white rounded-3xl p-8 shadow-sm border border-surface-container-high flex flex-col justify-between hover:shadow-md transition-shadow group">
                     <div className="flex items-start gap-4 mb-4">
                         <div className="w-12 h-12 rounded-xl bg-surface-container-low flex items-center justify-center border border-surface-container shrink-0 group-hover:border-primary/30 transition-colors">
                             <span className="material-symbols-outlined text-primary text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>contactless</span>

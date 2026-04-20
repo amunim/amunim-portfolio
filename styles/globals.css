@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .text-shadow-2xl {
+    text-shadow:
+      0 2px 1px rgb(0 0 0 / 0.28),
+      0 4px 3px rgb(0 0 0 / 0.2),
+      0 8px 8px rgb(0 0 0 / 0.14),
+      0 16px 14px rgb(0 0 0 / 0.09);
+  }
+}
+
 @layer base {
   body {
     font-family: "Inter", sans-serif;
@@ -40,4 +50,41 @@ html {
 .blueprint-line {
   background-image: radial-gradient(circle, #5b788f 1px, transparent 1px);
   background-size: 15px 15px;
+}
+
+@keyframes deployment-badge-shadow {
+  0%,
+  8% {
+    box-shadow: 0 0 #0000;
+  }
+  58%,
+  90% {
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+  100% {
+    box-shadow: 0 0 #0000;
+  }
+}
+
+@keyframes deployment-badge-scale {
+  0%,
+  8% {
+    transform: scale(0.92);
+  }
+  58%,
+  90% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(0.92);
+  }
+}
+
+.deployment-status-badge {
+  transform-origin: center;
+  animation:
+    deployment-badge-shadow 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite,
+    deployment-badge-scale 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }

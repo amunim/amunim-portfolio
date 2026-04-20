@@ -8,6 +8,7 @@ import IndexEcosystemSection from "@/components/indexPage/IndexEcosystemSection"
 import IndexInterfaceSection from "@/components/indexPage/IndexInterfaceSection";
 import IndexCaseStudiesSection from "@/components/indexPage/IndexCaseStudiesSection";
 import IndexContactSection from "@/components/indexPage/IndexContactSection";
+import TawkIntegration from "@/components/TawkIntegration";
 
 export default function Home() {
   return (
@@ -18,7 +19,7 @@ export default function Home() {
       </Head>
 
       <NavMenu />
-
+      <TawkIntegration />
       <main className="max-w-7xl mx-auto px-6 lg:px-12 pt-16 mt-6">
         <IndexHeroSection />
         <IndexMetricsSection />
