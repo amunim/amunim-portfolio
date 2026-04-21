@@ -1,4 +1,4 @@
-import { IconBrandAws, IconBrandCSharp, IconBrandFigma, IconBrandGoogle, IconBrandJavascript, IconBrandNextjs, IconBrandNodejs, IconBrandReact, IconBrandTypescript, IconDatabase, IconMapPin, IconNotes, IconTable, IconWorld } from '@tabler/icons-react';
+import { IconBrandAws, IconBrandCSharp, IconBrandFigma, IconBrandGoogle, IconBrandJavascript, IconBrandNextjs, IconBrandNodejs, IconBrandReact, IconBrandTypescript, IconDatabase, IconMapPin, IconNotes, IconStarFilled, IconTable, IconWorld } from '@tabler/icons-react';
 import Image from 'next/image';
 import Badge from '../Badge';
 
@@ -70,7 +70,7 @@ export default function IndexCaseStudiesSection() {
                         </div>
                     </div>
                     <div>
-                        <h3 className="text-sm font-bold text-primary tracking-widest uppercase mb-4 flex items-center gap-x-2"><IconTable className="shrink-0" stroke={1.75} aria-hidden /> <Badge>2024 - Present</Badge> Full Stack Engineer</h3>
+                        <h3 className="text-sm font-bold text-primary tracking-widest uppercase mb-4 flex items-center gap-x-2"><Badge>2024 - Present</Badge> INDEPENDENT PROJECT</h3>
                         <div className="mb-4 flex flex-wrap gap-x-4 gap-y-2 items-center justify-between overflow-visible sm:justify-start sm:items-center">
                             <h4 className="inline-flex items-center gap-x-2 text-3xl font-extrabold tracking-tight w-full min-[500px]:w-auto">
                                 <span className="inline-flex size-[50px] shrink-0 items-center justify-center rounded-xl bg-[#ecfdf5] text-[#166534]" aria-hidden>
@@ -97,7 +97,7 @@ export default function IndexCaseStudiesSection() {
                             <li><strong>Entity coverage:</strong> Built exports for <strong>4</strong> operational domains—<strong>orders, customers, carts,</strong> and <strong>product catalog</strong>—into user-selected workbooks with column-level mapping.</li>
                             <li><strong>Sync modes:</strong> Combined secure webhooks with on-demand pulls so teams can run <strong>3</strong> complementary paths—<strong>manual</strong> export, <strong>scheduled</strong> jobs, and <strong>event-driven</strong> pushes—from one configuration surface.</li>
                             <li><strong>Localization:</strong> Delivered <strong>2</strong> full UI locales (<strong>English + Arabic</strong>) including RTL layout, aimed at MENA operators on Zid.</li>
-                            <li><strong>Commercial packaging:</strong> Published on the Zid app marketplace as listing <strong>#4774</strong> with a <strong>14-day</strong> free trial and positioning up to <strong>2.5×</strong> lower cost than general-purpose automation tools (per public pricing page).</li>
+                            {/* <li><strong>Commercial packaging:</strong> Published on the Zid app marketplace as listing <strong>#4774</strong> with a <strong>14-day</strong> free trial and positioning up to <strong>2.5×</strong> lower cost than general-purpose automation tools (per public pricing page).</li> */}
                         </ul>
                         <div className="flex flex-wrap gap-3 mb-8">
                             <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconBrandTypescript className="shrink-0" stroke={1.75} /> TypeScript</span>
@@ -106,6 +106,51 @@ export default function IndexCaseStudiesSection() {
                             <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconBrandGoogle className="shrink-0" stroke={1.75} /> Google APIs / OAuth</span>
                             <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconDatabase className="shrink-0" stroke={1.75} /> Webhooks &amp; sync jobs</span>
                             <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><Image width={25} height={25} src={'/images/microservices.svg'} alt='Microservices' className='outline-2 shrink-0' /> Microservices</span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Upwork */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 items-center">
+                    <div className="bg-surface-container-low p-6 rounded-3xl">
+                        <div className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-lg border-4 border-white">
+                            <img alt="Upwork profile" className="w-full h-auto" src="/portfolio/upwork.svg"/>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 className="text-sm font-bold text-primary tracking-widest uppercase mb-4 flex items-center gap-x-2"><Badge>Top Rated</Badge> Freelance</h3>
+                        <div className="mb-4 flex flex-wrap gap-x-4 gap-y-2 items-center justify-between overflow-visible sm:justify-start sm:items-center">
+                            <h4 className="inline-flex items-center gap-x-2 text-3xl font-extrabold tracking-tight w-full min-[500px]:w-auto">
+                                <span className="p-0.5 inline-flex size-[50px] shrink-0 items-center justify-center rounded-xl bg-[#e8f5e9] text-[#1b5e20] text-base font-extrabold" aria-hidden>
+                                    Up
+                                </span>
+                                Upwork
+                            </h4>
+                            <a className="inline-flex gap-x-1 items-center text-primary font-bold hover:underline" target="_blank" rel="noreferrer" href="https://www.upwork.com/freelancers/~016f42c0501a199670">
+                                <IconWorld className="size-1 shrink-0" aria-hidden stroke={1.75} />
+                                View Upwork profile
+                                <span className="material-symbols-outlined text-sm">north_east</span>
+                            </a>
+                        </div>
+                        <p className="text-on-surface-variant mb-3 leading-relaxed">
+                            Highlights:
+                        </p>
+                        <ul className="text-sm text-on-surface-variant mb-8 list-disc space-y-3 pl-5 leading-relaxed marker:text-on-surface-variant">
+                            <li><strong>Top Rated</strong> freelancer on Upwork.</li>
+                            <li><strong>100% job success</strong> score.</li>
+                            <li><strong>~30 jobs</strong> completed.</li>
+                            <li><strong>4.89 stars</strong> average client rating.</li>
+                        </ul>
+                        <div className="flex flex-wrap gap-3 mb-8">
+                            <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconBrandTypescript className="shrink-0" /> TypeScript</span>
+                            <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconBrandJavascript className="shrink-0" /> JavaScript</span>
+                            <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconBrandReact className="shrink-0" /> React</span>
+                            <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconBrandNodejs className="shrink-0" /> Node.js</span>
+                            <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconBrandNextjs className="shrink-0" /> Next.js</span>
+                            <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><Image width={25} height={25} src="/images/microservices.svg" alt="Microservices" className="outline-2 shrink-0" /> Microservices</span>
+                            <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconDatabase className="shrink-0" /> PostgreSQL/MongoDB</span>
+                            <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconBrandAws className="shrink-0" /> AWS</span>
+                            <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconBrandFigma className="shrink-0" /> Figma</span>
                         </div>
                     </div>
                 </div>
@@ -128,7 +173,7 @@ export default function IndexCaseStudiesSection() {
                             </a>
                         </div>
                         <p className="text-on-surface-variant mb-3 leading-relaxed">
-                            Key contributions include:
+                            Project Highlights:
                         </p>
                         <ul className="text-sm text-on-surface-variant mb-8 list-disc space-y-3 pl-5 leading-relaxed marker:text-on-surface-variant">
                             <li><strong>Platform consolidation:</strong> Replaced all independent ASP.NET codebases with a unified <strong>.NET 6</strong> API and <strong>Next.js</strong> front end serving all brands from one multi-tenant backend.</li>

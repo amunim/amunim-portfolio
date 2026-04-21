@@ -5,7 +5,6 @@ import IndexHeroSection from "@/components/indexPage/IndexHeroSection";
 import IndexMetricsSection from "@/components/indexPage/IndexMetricsSection";
 import IndexCapabilitiesSection from "@/components/indexPage/IndexCapabilitiesSection";
 import IndexEcosystemSection from "@/components/indexPage/IndexEcosystemSection";
-import IndexInterfaceSection from "@/components/indexPage/IndexInterfaceSection";
 import IndexCaseStudiesSection from "@/components/indexPage/IndexCaseStudiesSection";
 import IndexContactSection from "@/components/indexPage/IndexContactSection";
 import TawkIntegration from "@/components/TawkIntegration";
@@ -25,7 +24,6 @@ export default function Home() {
         <IndexMetricsSection />
         <IndexCapabilitiesSection />
         <IndexEcosystemSection />
-        {/* <IndexInterfaceSection /> */}
         <IndexCaseStudiesSection />
         <IndexContactSection />
       </main>
