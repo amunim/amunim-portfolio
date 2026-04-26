@@ -4,13 +4,13 @@ import Badge from "../Badge";
 export default function IndexHeroSection() {
     return (
         <section className="flex flex-col items-center text-center pt-16 pb-32 relative">
-            <div className="skew-x-6 absolute -top-full -left-full inset-0 blueprint-line opacity-20 pointer-events-none w-[200vw]"></div>
-            <div className="skew-x-6 flex flex-col items-center text-center">
+            <div className="absolute -top-full -left-full inset-0 blueprint-line opacity-20 pointer-events-none w-[200vw]"></div>
+            <div className="flex flex-col items-center text-center">
                 <div className="relative w-full flex flex-col items-center">
                     {/* Floating Technical UI Elements */}
                     <div className="hidden xl:block absolute inset-0 pointer-events-none">
                         {/* Primary Stack Cluster */}
-                        <div className="absolute top-0 right-0 bg-white/60 backdrop-blur-md p-4 rounded-xl border border-primary/10 shadow-xl pointer-events-auto">
+                        <div className="absolute -top-24 -right-24 bg-white/60 backdrop-blur-md p-4 rounded-xl border border-primary/10 shadow-xl pointer-events-auto">
                             <div className="flex items-center gap-2 mb-3">
                                 <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
                                 <h5 className="text-[9px] font-bold text-outline uppercase tracking-widest">Stack Specification 01</h5>
@@ -45,7 +45,7 @@ export default function IndexHeroSection() {
                         </div>
 
                         {/* Webhook Architecture Fragment */}
-                        <div className="absolute bottom-[10%] right-[5%] bg-white p-5 rounded-2xl shadow-xl border border-primary/5 pointer-events-auto">
+                        <div className="absolute -bottom-12 right-[5%] bg-white p-5 rounded-2xl shadow-xl border border-primary/5 pointer-events-auto">
                             <div className="flex items-center gap-4 mb-4">
                                 <span className="material-symbols-outlined text-primary text-xl">hub</span>
                                 <div className="h-[1px] w-8 bg-primary/20"></div>
@@ -79,10 +79,10 @@ export default function IndexHeroSection() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center gap-4 mb-20 relative z-10">
-                    <button className="flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200">
+                    <button className="flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-xl font-bold shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-200">
                         <IconDownload className="w-5 h-5" /> Download CV
                     </button>
-                    <button className="bg-white text-on-surface border border-surface-container-high px-8 py-4 rounded-xl font-bold shadow-sm hover:bg-surface-container-low transition-all duration-200 flex items-center gap-2">
+                    <button className="bg-white text-on-surface border border-surface-container-high px-8 py-4 rounded-xl font-bold shadow-xl hover:shadow-md hover:bg-surface-container-low transition-all duration-200 flex items-center gap-2">
                         <span className="material-symbols-outlined text-xl">calendar_today</span>
                         Book Call
                     </button>
@@ -92,7 +92,7 @@ export default function IndexHeroSection() {
             {/* Experience & Community Dashboard */}
             <div className="w-full max-w-6xl relative group text-left">
                 <div className="absolute -inset-4 bg-gradient-to-b from-primary/10 to-transparent rounded-[3rem] blur-2xl opacity-50"></div>
-                <div className="relative bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-surface-container-high transform group-hover:scale-[1.01] transition-transform duration-700 min-h-[400px]">
+                <div className="relative bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-surface-container-high transform transition-transform duration-700 min-h-[400px]">
                     <div className="flex flex-col md:flex-row h-full">
                         {/* Left Panel: Professional Experience */}
                         <div className="flex-1 p-8 lg:p-12 text-left border-b md:border-b-0 md:border-r border-surface-container">
@@ -108,19 +108,55 @@ export default function IndexHeroSection() {
                                         <Badge>Present</Badge>
                                     </div>
                                     <p className="text-sm font-semibold text-on-surface-variant">Software Engineer L1</p>
-                                    <p className="text-xs text-outline mt-2 leading-relaxed">Developing core high-availability microservices and real-time synchronization engines.</p>
+                                    <p className="text-xs text-outline mt-2 leading-relaxed">
+                                        Delivered iClosed&apos;s <strong>public API</strong> platform—OAuth, rate limiting, versioned docs, and MCP server—used by <strong>thousands of partners and users</strong> for secure agent-native integrations.
+                                    </p>
+                                    <p className="text-xs text-outline mt-1 leading-relaxed">
+                                        Integrated device fingerprinting into the booking pipeline, eliminating spam—one customer saw <strong>thousands of fraudulent bookings (IP-rotation-based) drop to zero post-rollout.</strong>
+                                    </p>
+                                    <p className="text-xs text-outline mt-1 leading-relaxed">
+                                        Built automatic link previews for every shared event link across <strong>10,000+ events and 1M+ bookings</strong> with AWS CloudFront—no extra infrastructure required.
+                                    </p>
+                                    <p className="text-xs text-outline mt-1 leading-relaxed">
+                                        Implemented pixel-perfect Figma-to-React across diverse product domains—unified inbox, iScore, and the core global data module.
+                                    </p>
                                 </div>
                                 <div className="relative pl-6 border-l-2 border-primary/10">
                                     <div className="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-outline-variant"></div>
                                     <h4 className="font-bold text-lg">Upwork</h4>
                                     <p className="text-sm font-semibold text-on-surface-variant">Independent Contractor</p>
-                                    <p className="text-xs text-outline mt-2 leading-relaxed">Delivered 50+ successful full-stack deployments for global enterprise clients.</p>
+                                    <p className="text-xs text-outline mt-2 leading-relaxed">
+                                        <strong>Top Rated</strong> freelancer on Upwork.
+                                    </p>
+                                    <p className="text-xs text-outline mt-1 leading-relaxed">
+                                        <strong>100% job success</strong> score.
+                                    </p>
+                                    <p className="text-xs text-outline mt-1 leading-relaxed">
+                                        <strong>~30 jobs</strong> completed.
+                                    </p>
+                                    <p className="text-xs text-outline mt-1 leading-relaxed">
+                                        <strong>4.89 stars</strong> average client rating.
+                                    </p>
                                 </div>
                                 <div className="relative pl-6 border-l-2 border-primary/10">
                                     <div className="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-outline-variant"></div>
                                     <h4 className="font-bold text-lg">Magical Digits</h4>
                                     <p className="text-sm font-semibold text-on-surface-variant">Full Stack Engineer</p>
-                                    <p className="text-xs text-outline mt-2 leading-relaxed">Optimized frontend performance and built scalable backend architectures.</p>
+                                    <p className="text-xs text-outline mt-2 leading-relaxed">
+                                        <strong>Platform consolidation:</strong> Replaced all independent ASP.NET codebases with a unified <strong>.NET 6</strong> API and <strong>Next.js</strong> front end serving all brands from one multi-tenant backend.
+                                    </p>
+                                    <p className="text-xs text-outline mt-1 leading-relaxed">
+                                        <strong>Content architecture:</strong> Designed a SQL Server–driven dynamic page and routing model, removing per-property release cycles entirely.
+                                    </p>
+                                    <p className="text-xs text-outline mt-1 leading-relaxed">
+                                        <strong>High-traffic migration:</strong> Transitioned OTA and direct booking flows (peak: thousands/day) with full availability, pricing, and transactional reliability maintained throughout.
+                                    </p>
+                                    <p className="text-xs text-outline mt-1 leading-relaxed">
+                                        <strong>Availability:</strong> Kept the consolidated platform within <strong>four- to five-nines</strong> targets—<strong>99.99%+</strong> to <strong>99.999%</strong> annual uptime on booking and OTA integration surfaces.
+                                    </p>
+                                    <p className="text-xs text-outline mt-1 leading-relaxed">
+                                        <strong>Performance:</strong> ~60% reduction in bespoke markup via shared templating; p95 <strong>API latency improved ~40% on checkout paths.</strong>
+                                    </p>
                                 </div>
                             </div>
                         </div>
