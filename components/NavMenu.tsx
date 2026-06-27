@@ -20,7 +20,7 @@ export default function NavMenu() {
                 <a onClick={handleSmoothScroll} className="font-['Manrope'] font-bold tracking-tight text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors hover:scale-105 duration-200" href="#ecosystem">Ecosystem</a>
                 <a onClick={handleSmoothScroll} className="font-['Manrope'] font-bold tracking-tight text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors hover:scale-105 duration-200" href="#contact">Get in Touch</a>
             </div>
-            <button className="bg-primary text-white px-4 py-2 rounded-lg font-bold text-sm hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-1"><IconDownloadFilled className="w-4 h-4" /> Resume</button>
+            <a href="/Abdul-Munim-CV.pdf" download="Abdul-Munim-CV.pdf" className="bg-primary text-white px-4 py-2 rounded-lg font-bold text-sm hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-1"><IconDownloadFilled className="w-4 h-4" /> Resume</a>
         </nav>
     );
 }

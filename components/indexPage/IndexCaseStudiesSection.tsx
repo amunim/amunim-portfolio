@@ -37,10 +37,9 @@ export default function IndexCaseStudiesSection() {
                             Key contributions include:
                         </p>
                         <ul className="text-sm text-on-surface-variant mb-8 list-disc space-y-3 pl-5 leading-relaxed marker:text-on-surface-variant">
-                            <li>Delivered iClosed's <strong>public API</strong> platform — OAuth, rate limiting, versioned docs, and MCP server — now used by <strong>thousands of partners and users</strong> for secure agent-native integrations.</li>
+                            <li>Built iClosed's <strong>public API</strong> platform — OAuth 2.0, rate limiting, versioned OpenAPI/Swagger docs, and an MCP server — now serving <strong>10,000+ partners</strong> and processing <strong>1M+ API requests/week</strong> for secure, agent-native integrations.</li>
                             <li>Integrated device fingerprinting into the booking pipeline, eliminating spam — one customer saw <strong>thousands of fraudulent bookings (IP-rotation-based) drop to zero post-rollout.</strong></li>
-                            <li>Built automatic link previews (the rich cards that appear when sharing links on Slack, Twitter, etc.) or every shared event link across <strong>10,000+ events and 1M+ bookings</strong>, using AWS CloudFront — no extra infrastructure required.</li>
-                            <li>Implemented pixel-perfect Figma-to-React across diverse product domains — unified inbox, iScore, and the core global data module.</li>
+                            <li>Built AWS CloudFront–based OG link previews (the rich cards that appear when sharing links on Slack, Twitter, etc.) across <strong>10,000+ events and 1M+ bookings</strong>, improving SEO discoverability — no extra infrastructure required.</li>
                         </ul>
                         <div className="flex flex-wrap gap-3 mb-8">
                             <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconBrandTypescript className="shrink-0" /> TypeScript</span>
@@ -58,6 +57,54 @@ export default function IndexCaseStudiesSection() {
                     <div className="order-1 lg:order-3 bg-surface-container-low p-6 rounded-3xl">
                         <div className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-lg border-4 border-white">
                             <img alt="iclosed.io Screenshot" className="w-full h-auto" src="/portfolio/iclosed.svg" />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Cast Case Study */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 items-center">
+                    <div className="bg-surface-container-low p-6 rounded-3xl">
+                        <div className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-lg border-4 border-white">
+                            <img alt="Cast — MCP server analytics dashboard" className="w-full h-auto" src="/portfolio/cast.svg" />
+                        </div>
+                    </div>
+                    <div>
+                        <h3 className="text-sm font-bold text-primary tracking-widest uppercase mb-4 flex items-center gap-x-2"><Badge>2025 - Present</Badge> Founder &amp; Full Stack Engineer</h3>
+                        <div className="mb-4 flex flex-wrap gap-x-4 gap-y-2 items-center justify-between overflow-visible sm:justify-start sm:items-center">
+                            <h4 className="inline-flex items-center gap-x-2 text-3xl font-extrabold tracking-tight w-full min-[500px]:w-auto">
+                                <Image src="/images/cast-icon.svg" alt="Cast" width={50} height={50} />
+                                Cast
+                            </h4>
+                            <a className="inline-flex gap-x-1 items-center text-primary font-bold hover:underline" target="_blank" rel="noreferrer" href="https://getcast.io">
+                                <IconWorld className="size-1 shrink-0" aria-hidden stroke={1.75} />
+                                View Cast
+                                <span className="material-symbols-outlined text-sm">north_east</span>
+                            </a>
+                            <a className="inline-flex gap-x-1 items-center text-primary font-bold hover:underline" target="_blank" rel="noreferrer" href="https://getcast.io/demo">
+                                <IconNotes className="size-1 shrink-0" aria-hidden stroke={1.75} />
+                                Try demo
+                                <span className="material-symbols-outlined text-sm">north_east</span>
+                            </a>
+                        </div>
+                        <p className="text-on-surface-variant mb-3 leading-relaxed">
+                            Turn any API into a production, agent-ready MCP server — no OAuth/DCR work required. Key contributions include:
+                        </p>
+                        <ul className="text-sm text-on-surface-variant mb-8 list-disc space-y-3 pl-5 leading-relaxed marker:text-on-surface-variant">
+                            <li><strong>Spec-to-server pipeline:</strong> Built the full flow that turns any <strong>OpenAPI/Swagger</strong> spec into a hosted MCP server in minutes — auto-generating tool definitions and endpoints, then provisioning isolated servers on <strong>AWS ECS</strong>.</li>
+                            <li><strong>Real-time analytics suite:</strong> Shipped a unified dashboard across all of a customer's MCP servers — tool-call logs, latency, error monitoring by status code, top tools, request health, and geographic demographics.</li>
+                            <li><strong>Pattern Intelligence:</strong> Engineered sequence mining that detects common tool-call chains and auto-suggests reusable agent <strong>SKILL.md</strong> workflows (e.g. an Order Lookup Flow at <strong>94% confidence</strong>).</li>
+                            <li><strong>Granular governance:</strong> Per-tool enable/disable plus scope and custom-parameter injection at both workspace and tool level, and a custom-domains system with automated <strong>ACM</strong> cert validation and <strong>ALB</strong> host-header routing.</li>
+                            <li><strong>Hardened for multi-tenant scale:</strong> <strong>AES-256-GCM</strong> secret encryption, <strong>Redis</strong>-backed distributed rate limiting (fail-open), soft-delete lifecycle, and plan-gated billing.</li>
+                        </ul>
+                        <div className="flex flex-wrap gap-3 mb-8">
+                            <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconBrandTypescript className="shrink-0" stroke={1.75} /> TypeScript</span>
+                            <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconBrandNextjs className="shrink-0" stroke={1.75} /> Next.js 15</span>
+                            <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconBrandReact className="shrink-0" stroke={1.75} /> React</span>
+                            <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconBrandNodejs className="shrink-0" stroke={1.75} /> Node.js</span>
+                            <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconDatabase className="shrink-0" stroke={1.75} /> Prisma / MySQL</span>
+                            <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconDatabase className="shrink-0" stroke={1.75} /> Redis</span>
+                            <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><IconBrandAws className="shrink-0" stroke={1.75} /> AWS ECS / S3 / ACM</span>
+                            <span className="px-2 inline-flex items-center gap-x-1 py-1 bg-surface-container text-xs font-bold text-primary rounded"><Image width={25} height={25} src={'/images/microservices.svg'} alt='MCP' className='outline-2 shrink-0' /> MCP</span>
                         </div>
                     </div>
                 </div>

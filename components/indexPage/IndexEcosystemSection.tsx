@@ -126,12 +126,33 @@ export default function IndexEcosystemSection() {
                         </div>
                         <span className="material-symbols-outlined text-primary text-3xl shrink-0 group-hover:scale-110 transition-transform" style={{ fontVariationSettings: "'FILL' 1" }}>qr_code_2</span>
                     </div>
-                    <div className="flex flex-wrap gap-2 mt-auto">
+                    <div className="space-y-2.5 my-5">
+                        <div className="flex items-center gap-2 text-xs text-on-surface-variant">
+                            <span className="material-symbols-outlined text-primary text-base" style={{ fontVariationSettings: "'FILL' 1" }}>directions_car</span>
+                            QR-based vehicle entry / exit &amp; kilometer logging
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-on-surface-variant">
+                            <span className="material-symbols-outlined text-primary text-base" style={{ fontVariationSettings: "'FILL' 1" }}>record_voice_over</span>
+                            Voice-assisted guard workflows (Web Speech API)
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-on-surface-variant">
+                            <span className="material-symbols-outlined text-primary text-base" style={{ fontVariationSettings: "'FILL' 1" }}>admin_panel_settings</span>
+                            Role-based admin / guard dashboards
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-on-surface-variant">
+                            <span className="material-symbols-outlined text-primary text-base" style={{ fontVariationSettings: "'FILL' 1" }}>rocket_launch</span>
+                            Shipped to a live, on-site security team
+                        </div>
+                    </div>
+                    <div className="flex flex-wrap gap-2 mt-auto pt-2 border-t border-surface-container">
                         <div className="flex items-center gap-1 px-2 py-1 bg-surface-container-low text-[9px] font-bold text-outline border border-surface-container uppercase rounded-full">
                             <span className="material-symbols-outlined text-sm">mic</span> Voice-Log
                         </div>
                         <div className="flex items-center gap-1 px-2 py-1 bg-surface-container-low text-[9px] font-bold text-outline border border-surface-container uppercase rounded-full">
                             <span className="material-symbols-outlined text-sm">verified_user</span> QR-Auth
+                        </div>
+                        <div className="flex items-center gap-1 px-2 py-1 bg-surface-container-low text-[9px] font-bold text-outline border border-surface-container uppercase rounded-full">
+                            <span className="material-symbols-outlined text-sm">database</span> PostgreSQL
                         </div>
                     </div>
                 </div>
@@ -166,6 +187,20 @@ export default function IndexEcosystemSection() {
                                 <h3 className="text-lg font-bold">Canteen Tracking</h3>
                             </div>
                             <p className="text-xs text-on-surface-variant leading-relaxed">RFID consumption tracking for 5,000+ daily employees.</p>
+                        </div>
+                    </div>
+                    <div className="space-y-2.5 my-4">
+                        <div className="flex items-center gap-2 text-xs text-on-surface-variant">
+                            <span className="material-symbols-outlined text-primary text-base" style={{ fontVariationSettings: "'FILL' 1" }}>badge</span>
+                            RFID attendance &amp; lunch-consumption tracking
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-on-surface-variant">
+                            <span className="material-symbols-outlined text-primary text-base" style={{ fontVariationSettings: "'FILL' 1" }}>receipt_long</span>
+                            Deduction management &amp; operational reporting
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-on-surface-variant">
+                            <span className="material-symbols-outlined text-primary text-base" style={{ fontVariationSettings: "'FILL' 1" }}>verified</span>
+                            Audit trails across 500+ daily transactions
                         </div>
                     </div>
                     <div className="space-y-2 mt-auto">
