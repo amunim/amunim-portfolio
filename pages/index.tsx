@@ -1,28 +1,18 @@
 import Head from 'next/head'
 import NavMenu from '@/components/NavMenu'
-import { getPortfolioItems, PortfolioParams } from '@/services/portfolioService'
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { ContributionParams, getContributionItems } from '@/services/contributionService'
 import Footer from '@/components/Footer'
-import IndexServices from '@/components/indexPage/IndexServicesSection'
-import IndexPortfolioSection from '@/components/indexPage/IndexPortfolioSection'
-import IndexPricingSection from '@/components/indexPage/IndexPricingSection'
-import IndexContributionsSection from '@/components/indexPage/IndexContributionsSections'
-import IndexIntroSection from '@/components/indexPage/IndexIntroSection'
-import { getIsSsrMobile } from '@/hooks/useIsMobile'
+import IndexHeroSection from '@/components/indexPage/IndexHeroSection'
+import ProjectShowcase from '@/components/ProjectShowcase'
+import IndexCapabilitiesSection from '@/components/indexPage/IndexCapabilitiesSection'
+import IndexMoreWorkSection from '@/components/indexPage/IndexMoreWorkSection'
+import IndexOpenSourceSection from '@/components/indexPage/IndexOpenSourceSection'
+import IndexContactSection from '@/components/indexPage/IndexContactSection'
 import TawkIntegration from '@/components/TawkIntegration'
 
-export const getServerSideProps: GetServerSideProps<{ portfolio: PortfolioParams[], contributions: ContributionParams[] }> = async (context) => {
-  const portfolio: PortfolioParams[] = await getPortfolioItems();
-  const contributions: ContributionParams[] = await getContributionItems();
-  return {
-    props: { portfolio, contributions, isSsrMobile: getIsSsrMobile(context) }
-  }
-}
+const title = 'Abdul Munim | Software engineer for APIs, integrations and booking systems'
+const description = 'Software engineer at iClosed (public API, OAuth, MCP server), founder of Cast and a Top Rated freelancer on Upwork.'
 
-export default function Home({ portfolio, contributions }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const title = 'Abdul Munim | Full-stack developer for booking, accounting and POS software'
-  const description = 'Freelance full-stack developer building rental booking, accounting and point-of-sale systems in C# and TypeScript. Top Rated on Upwork.'
+export default function Home() {
   return (
     <>
       <Head>
@@ -34,17 +24,20 @@ export default function Home({ portfolio, contributions }: InferGetServerSidePro
         <meta property="og:type" content="website" />
       </Head>
 
-      <a href="#main" className="skip-link">Skip to content</a>
-      <header className="site-header">
+      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-40 focus:rounded-lg focus:bg-zinc-900 focus:px-4 focus:py-2 focus:text-white">
+        Skip to content
+      </a>
+      <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white">
         <NavMenu />
       </header>
-      <main id='main'>
+      <main id="main">
         <TawkIntegration />
-        <IndexIntroSection />
-        <IndexPortfolioSection portfolioItems={portfolio} />
-        <IndexServices />
-        <IndexPricingSection />
-        <IndexContributionsSection contributions={contributions} />
+        <IndexHeroSection />
+        <ProjectShowcase />
+        <IndexCapabilitiesSection />
+        <IndexMoreWorkSection />
+        <IndexOpenSourceSection />
+        <IndexContactSection />
       </main>
       <Footer />
     </>

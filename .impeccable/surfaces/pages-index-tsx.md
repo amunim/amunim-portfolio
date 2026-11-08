@@ -7,19 +7,18 @@ related_targets: []
 
 # Homepage (Persuade, portfolio)
 
-Scope: `pages/index.tsx`, the homepage. Mode: Persuade (visitor decides to contact).
-Audience: freelance buyers and recruiters, equal. Action: contact. Proof: four shipped projects, Upwork record, OSS.
+Scope: `pages/index.tsx`. Mode: Persuade. Audience: hiring managers, clients and founders. Action: book a call.
 
 ## Direction contract
 
-THESIS: The homepage is a printed job file, not a developer-template page. It refuses the dark gradient hero, icon-card carousel and purple/yellow brand; the work is set as ruled, numbered-by-year entries with the real product screens printed onto the paper.
+THESIS: A product-page-style portfolio: one hero carousel card shows experience and projects one by one on real laptop and phone mockups. Refuses editorial/print looks, icon-card grids and invented dashboards.
 
-OWN-WORLD: Greige uncoated paper ground (#ECE9E2), near-black ink (#15171C), one committed ultramarine (#1B3DDE) used as a full-bleed field for the experience section and as the single link/action colour. Hairline 1px ink rules, tabular numerals, no cards, no shadows. Bricolage Grotesque for display and UI, Source Serif 4 for running text. Project screens multiply onto the paper so their white ground disappears.
+OWN-WORLD: Zinc neutrals, white cards with 1px zinc borders and Tailwind default shadows, blue-600 as the single accent (progress bar, focus, check marks), zinc-900 buttons, one zinc-950 contact band. Onest variable. Devices are CSS frames around real screenshots.
 
-STORY: The visitor learns in one screen that Abdul builds booking, accounting and POS systems for businesses, sees the proof (Upwork record, shipped projects with screens), and reaches a single "Contact me" action in the nav, hero and close.
+STORY: Visitor learns in one screen what Abdul does (APIs, integrations, booking systems), sees proof as live product screens (iClosed docs, Cast, Zid Sheets, Goldener Inns), then books a call or downloads the CV.
 
-FIRST VIEWPORT: Left two-thirds: h1 "Full-stack developer for booking, accounting and POS software" in large condensed grotesque, a 25-word sub-line, one primary button (Contact me) and one text link (See the work). Right third: the Crystal Cabins rental-site screen printed onto the paper. A hairline rule and the hard fact (Top Rated on Upwork, 100% job success, since 2021) sit along the bottom edge of the screen. Hero enters once on load (staggered rise).
+FIRST VIEWPORT: Centered h1, one-paragraph lede, Book a call + Download CV, Upwork line; the carousel card begins below and bleeds past the fold.
 
-FORM: Ruled editorial index (list of rows with large year, title, description, screen), seed: none (unavailable). Position 1 on my own list; the dice roll was not run because the owner pinned the direction (light, warm, print-like).
+FORM: Hero card carousel with tabs and progress bar (autoplay, pauses on hover and off-screen), followed by capabilities, a ruled project list, open-source cards and a dark contact band. seed: none (unavailable); set by the owner's reference.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
