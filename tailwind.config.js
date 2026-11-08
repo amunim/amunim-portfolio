@@ -1,90 +1,63 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
- 
-    // Or if using `src` directory:
-    "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: "class",
   theme: {
     extend: {
-      colors: {
-        "primary": "#5B788F",
-        "tertiary": "#7a5435",
-        "surface-tint": "#5B788F",
-        "on-secondary": "#ffffff",
-        "primary-fixed-dim": "#accae4",
-        "surface-container-highest": "#e0e3e5",
-        "secondary": "#515f74",
-        "surface-container-high": "#e6e8ea",
-        "error": "#ba1a1a",
-        "inverse-primary": "#accae4",
-        "on-primary-fixed": "#001e2f",
-        "tertiary-fixed-dim": "#efbd96",
-        "surface-container-lowest": "#ffffff",
-        "surface-container-low": "#f2f4f6",
-        "on-primary-container": "#fdfcff",
-        "on-surface": "#191c1e",
-        "secondary-container": "#d5e3fd",
-        "on-surface-variant": "#42474c",
-        "error-container": "#ffdad6",
-        "on-secondary-container": "#57657b",
-        "surface-variant": "#e0e3e5",
-        "on-background": "#191c1e",
-        "background": "#f7f9fb",
-        "secondary-fixed-dim": "#b9c7e0",
-        "surface-container": "#eceef0",
-        "tertiary-container": "#956c4b",
-        "on-secondary-fixed-variant": "#3a485c",
-        "outline": "#73787d",
-        "on-secondary-fixed": "#0d1c2f",
-        "inverse-surface": "#2d3133",
-        "on-primary-fixed-variant": "#2c4a5f",
-        "on-tertiary-fixed": "#2f1500",
-        "inverse-on-surface": "#eff1f3",
-        "on-error": "#ffffff",
-        "primary-fixed": "#c9e6ff",
-        "on-tertiary-fixed-variant": "#613f22",
-        "surface-dim": "#d8dadc",
-        "surface": "#f7f9fb",
-        "surface-bright": "#f7f9fb",
-        "on-tertiary": "#ffffff",
-        "on-tertiary-container": "#fffcff",
-        "outline-variant": "#c2c7cd",
-        "primary-container": "#5B788F",
-        "tertiary-fixed": "#ffdcc3",
-        "on-error-container": "#93000a",
-        "on-primary": "#ffffff",
-        "secondary-fixed": "#d5e3fd",
-        'wedgewood': {
-            '50': '#f3f6f8',
-            '100': '#e1e8ec',
-            '200': '#c6d3db',
-            '300': '#9fb3c1',
-            '400': '#708ca0',
-            '500': '#5b788f',
-            '600': '#495d71',
-            '700': '#404f5e',
-            '800': '#3a4450',
-            '900': '#333b46',
-            '950': '#1f252d',
+      fontFamily: {
+        sans: ['"Onest Variable"', 'ui-sans-serif', 'system-ui', '-apple-system', '"Segoe UI"', 'sans-serif'],
+      },
+      keyframes: {
+        // compositor-only motion: transform and opacity
+        'fade-up': {
+          from: { opacity: '0', transform: 'translateY(8px)' },
+          to: { opacity: '1', transform: 'none' },
+        },
+        'chip-in': {
+          from: { opacity: '0', transform: 'translateY(6px) scale(0.96)' },
+          to: { opacity: '1', transform: 'none' },
+        },
+        progress: {
+          from: { transform: 'scaleX(0)' },
+          to: { transform: 'scaleX(1)' },
+        },
+        // one continuous pass along the track; translate percentages are of the track width
+        rider: {
+          '0%': { transform: 'translateX(-100%)', opacity: '0' },
+          '4%': { opacity: '1' },
+          '96%': { opacity: '1' },
+          '100%': { transform: 'translateX(0)', opacity: '0' },
+        },
+        // chips are always visible; a hover-like highlight (ring + lift) visits them one by one, offset with animation-delay
+        'chip-ring': {
+          '0%': { opacity: '0' },
+          '3%, 22%': { opacity: '1' },
+          '25%, 100%': { opacity: '0' },
+        },
+        'chip-lift': {
+          '0%': { translate: '0 0' },
+          '3%, 22%': { translate: '0 -2px' },
+          '25%, 100%': { translate: '0 0' },
+        },
+        // each label owns one quarter of the cycle (offset with animation-delay) and rises in from below
+        'step-label': {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '3%, 20%': { opacity: '1', transform: 'translateY(0)' },
+          '23%, 100%': { opacity: '0', transform: 'translateY(-4px)' },
         },
       },
-      fontFamily: {
-        "headline": ["Manrope"],
-        "body": ["Inter"],
-        "label": ["Inter"]
-      },
-      borderRadius: {
-        "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"
+      animation: {
+        'fade-up': 'fade-up 400ms ease-out both',
+        'chip-in': 'chip-in 400ms ease-out both',
+        progress: 'progress 7s linear forwards',
+        rider: 'rider 9.6s linear infinite',
+        'step-label': 'step-label 9.6s linear infinite both',
+        'chip-ring': 'chip-ring 9.6s linear infinite',
+        'chip-lift': 'chip-lift 9.6s linear infinite',
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/container-queries'),
-  ],
+  plugins: [],
 }

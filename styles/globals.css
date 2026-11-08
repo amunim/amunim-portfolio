@@ -2,89 +2,171 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .text-shadow-2xl {
-    text-shadow:
-      0 2px 1px rgb(0 0 0 / 0.28),
-      0 4px 3px rgb(0 0 0 / 0.2),
-      0 8px 8px rgb(0 0 0 / 0.14),
-      0 16px 14px rgb(0 0 0 / 0.09);
-  }
+/* Onest variable, latin subset, self-hosted (licence in /public/fonts). */
+@font-face {
+  font-family: 'Onest Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/onest-latin-wght-normal.woff2') format('woff2');
 }
 
 @layer base {
-  body {
-    font-family: "Inter", sans-serif;
-    @apply bg-background text-on-surface;
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    @apply bg-white antialiased;
   }
+
+  body {
+    @apply font-sans text-zinc-900;
+  }
+
   h1,
   h2,
-  h3,
-  h4 {
-    font-family: "Manrope", sans-serif;
+  h3 {
+    @apply font-semibold;
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    @apply bg-blue-600 text-white;
+  }
+
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-blue-600;
   }
 }
 
-html {
-  overflow-x: hidden;
+/* looping animations rest while the showcase is scrolled out of view; hovering never pauses anything */
+[data-paused='true'] .animate-progress,
+[data-paused='true'] .animate-rider,
+[data-paused='true'] .animate-step-label,
+[data-paused='true'] .animate-chip-lift,
+[data-paused='true'] .after:animate-chip-ring::after {
+  animation-play-state: paused;
 }
 
-.material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-.blue-gradient {
-  background: linear-gradient(135deg, #5b788f 0%, #456278 100%);
-}
-.perspective-container {
-  perspective: 1500px;
-}
-.skew-card {
-  transform: rotateY(-20deg) rotateX(10deg);
-  transition: all 0.5s ease;
-}
-.skew-card:hover {
-  transform: rotateY(0deg) rotateX(0deg) scale(1.05);
-  z-index: 50;
-}
-.blueprint-line {
-  background-image: radial-gradient(circle, #5b788f 1px, transparent 1px);
-  background-size: 15px 15px;
-}
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 
-@keyframes deployment-badge-shadow {
-  0%,
-  8% {
-    box-shadow: 0 0 #0000;
+  /* illustrations and hero cards rest on their finished picture */
+  .ill-group,
+  .ill-in,
+  .ill-pop,
+  .ill-x,
+  .ill-knob,
+  .ill-off,
+  .ill-spread,
+  .ill-label-a,
+  .ill-label-b,
+  .ill-sync,
+  .ill-fill,
+  .hero-float {
+    animation: none !important;
   }
-  58%,
-  90% {
-    box-shadow:
-      0 4px 6px -1px rgb(0 0 0 / 0.1),
-      0 2px 4px -2px rgb(0 0 0 / 0.1);
-  }
-  100% {
-    box-shadow: 0 0 #0000;
-  }
-}
 
-@keyframes deployment-badge-scale {
-  0%,
-  8% {
-    transform: scale(0.92);
-  }
-  58%,
-  90% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(0.92);
+  .ill-ring::after,
+  .ill-ring1::after,
+  .ill-hl {
+    animation: none !important;
   }
 }
 
-.deployment-status-badge {
-  transform-origin: center;
-  animation:
-    deployment-badge-shadow 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite,
-    deployment-badge-scale 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+/* ---------- animated illustrations: transform and opacity only ----------
+   The base styles are the finished state, so reduced motion shows a complete picture. */
+
+/* One scene per 8s: the group fades in, items enter with delays, the group fades out, then React replays it. */
+.ill-group { animation: ill-group 8s linear both; }
+.ill-in { animation: ill-in 0.45s ease-out both; animation-delay: var(--d, 0s); }
+.ill-pop { animation: ill-pop 0.35s ease-out both; animation-delay: var(--d, 0s); }
+.ill-x { transform-origin: left; animation: ill-x 0.7s ease-out both; animation-delay: var(--d, 0s); }
+.ill-knob { animation: ill-knob 0.3s ease-out both; animation-delay: var(--d, 0s); }
+.ill-off { animation: ill-off 0.3s ease-out both; animation-delay: var(--d, 0s); }
+.ill-ring1::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  border: 2px solid #2563eb;
+  opacity: 0;
+  pointer-events: none;
+  animation: ill-ring1 1s linear both;
+  animation-delay: var(--d, 0s);
 }
+.ill-spread { animation: ill-spread 5s ease-in-out infinite; }
+.ill-label-a { animation: ill-label-a 5s linear infinite; }
+.ill-label-b { animation: ill-label-b 5s linear infinite; }
+.ill-sync { animation: ill-sync 1.4s ease-in-out infinite alternate; }
+
+.ill-ring::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  border: 2px solid #2563eb;
+  opacity: 0;
+  pointer-events: none;
+  animation: var(--ring) var(--ring-d, 3s) linear infinite;
+  animation-delay: var(--d, 0s);
+}
+
+.ill-fill { transform-origin: left; animation: var(--fill) var(--fill-d, 3s) linear infinite; }
+
+.ill-hl {
+  position: absolute;
+  inset: 0;
+  background: rgb(59 130 246 / 0.22);
+  opacity: 0;
+  animation: var(--hl) 4s linear infinite;
+}
+
+[data-paused='true'] .ill *,
+[data-paused='true'] .ill *::after {
+  animation-play-state: paused !important;
+}
+
+@keyframes ill-group { 0% { opacity: 0 } 4%, 88% { opacity: 1 } 94%, 100% { opacity: 0 } }
+@keyframes ill-in { from { opacity: 0; transform: translateY(12px) } to { opacity: 1; transform: none } }
+@keyframes ill-pop { from { opacity: 0; transform: scale(0.5) } to { opacity: 1; transform: scale(1) } }
+@keyframes ill-x { from { transform: scaleX(0) } to { transform: scaleX(1) } }
+@keyframes ill-knob { from { transform: translateX(-12px) } to { transform: none } }
+@keyframes ill-off { from { opacity: 1 } to { opacity: 0 } }
+@keyframes ill-ring1 { 0% { opacity: 0 } 20%, 70% { opacity: 1 } 100% { opacity: 0 } }
+/* rc-rate: starsSpacing grows and shrinks; the stars move by transform, the label swaps by opacity */
+@keyframes ill-spread { 0%, 25% { transform: translateX(0) } 50%, 75% { transform: translateX(calc((var(--i) - 2) * 18px)) } 100% { transform: translateX(0) } }
+@keyframes ill-label-a { 0%, 30% { opacity: 1 } 40%, 90% { opacity: 0 } 100% { opacity: 1 } }
+@keyframes ill-label-b { 0%, 40% { opacity: 0 } 50%, 75% { opacity: 1 } 85%, 100% { opacity: 0 } }
+@keyframes ill-sync { from { transform: translateX(-3px) } to { transform: translateX(3px) } }
+
+/* microservices: one request every 3s, through a different service each time (9s) */
+@keyframes ms-gw { 0% { opacity: 0 } 4%, 18% { opacity: 1 } 24%, 100% { opacity: 0 } }
+@keyframes ms-svc { 0%, 12% { opacity: 0 } 14%, 22% { opacity: 1 } 26%, 100% { opacity: 0 } }
+@keyframes ms-db { 0%, 66% { opacity: 0 } 72%, 86% { opacity: 1 } 94%, 100% { opacity: 0 } }
+@keyframes ms-l1 { 0%, 12% { transform: scaleX(0); opacity: 1 } 38%, 86% { transform: scaleX(1); opacity: 1 } 96%, 100% { transform: scaleX(1); opacity: 0 } }
+@keyframes ms-l2 { 0%, 46% { transform: scaleX(0); opacity: 1 } 70%, 90% { transform: scaleX(1); opacity: 1 } 98%, 100% { transform: scaleX(1); opacity: 0 } }
+
+/* tables: users.id, the join line, then bookings.user_id (4s) */
+@keyframes tb-a { 0% { opacity: 0 } 4%, 26% { opacity: 1 } 32%, 100% { opacity: 0 } }
+@keyframes tb-b { 0%, 46% { opacity: 0 } 52%, 86% { opacity: 1 } 94%, 100% { opacity: 0 } }
+@keyframes tb-line { 0%, 22% { transform: scaleX(0); opacity: 1 } 50%, 88% { transform: scaleX(1); opacity: 1 } 96%, 100% { transform: scaleX(1); opacity: 0 } }
+
+/* hero cards drift up and down very slowly (transform only) */
+.hero-float { animation: hero-float 6s ease-in-out infinite alternate; animation-delay: var(--d, 0s); }
+@keyframes hero-float { from { transform: translateY(0) } to { transform: translateY(-8px) } }
+

@@ -1,9 +1,4 @@
-export type FormData = {
-  name: string;
-  email: string;
-  message: string;
-  token: string;
-};
+export type FormData = { name: string; email: string; message: string; token: string };
 
 export function sendEmail(data: FormData) {
     const apiEndpoint = '/api/email';
