@@ -64,6 +64,28 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
+
+  /* illustrations and hero cards rest on their finished picture */
+  .ill-group,
+  .ill-in,
+  .ill-pop,
+  .ill-x,
+  .ill-knob,
+  .ill-off,
+  .ill-spread,
+  .ill-label-a,
+  .ill-label-b,
+  .ill-sync,
+  .ill-fill,
+  .hero-float {
+    animation: none !important;
+  }
+
+  .ill-ring::after,
+  .ill-ring1::after,
+  .ill-hl {
+    animation: none !important;
+  }
 }
 
 /* ---------- animated illustrations: transform and opacity only ----------
@@ -143,3 +165,7 @@
 @keyframes tb-a { 0% { opacity: 0 } 4%, 26% { opacity: 1 } 32%, 100% { opacity: 0 } }
 @keyframes tb-b { 0%, 46% { opacity: 0 } 52%, 86% { opacity: 1 } 94%, 100% { opacity: 0 } }
 @keyframes tb-line { 0%, 22% { transform: scaleX(0); opacity: 1 } 50%, 88% { transform: scaleX(1); opacity: 1 } 96%, 100% { transform: scaleX(1); opacity: 0 } }
+
+/* hero cards drift up and down very slowly (transform only) */
+.hero-float { animation: hero-float 6s ease-in-out infinite alternate; animation-delay: var(--d, 0s); }
+@keyframes hero-float { from { transform: translateY(0) } to { transform: translateY(-8px) } }
