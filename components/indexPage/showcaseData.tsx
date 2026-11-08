@@ -70,7 +70,7 @@ export const slides: Slide[] = [
       { label: 'Visit Zid Sheets', href: 'https://zidsheets.amunim.me/' },
       { label: 'See the Zid listing', href: 'https://web.zid.sa/market/app/4774' },
     ],
-    laptop: { src: '/showcase/zid-d.jpg', alt: 'The Zid Sheets website: the simplest way to connect Zid and Google Sheets, with the task builder shown on the right' },
+    laptop: { src: '/showcase/zid-d.png', alt: 'The Zid Sheets dashboard: the Executions page with a log of successful order.create runs and the monthly quota' },
     flow: { from: 'Zid store', to: 'Google Sheets', items: ['Orders', 'Customers', 'Carts', 'Product catalog'] },
   },
   {

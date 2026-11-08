@@ -1,17 +1,48 @@
-import { IconCalendar, IconCalendarEvent, IconCheck, IconDownload, IconKey } from '@tabler/icons-react'
-import type { ReactNode } from 'react'
+import * as Dialog from '@radix-ui/react-dialog'
+import { IconCalendar, IconCalendarEvent, IconCheck, IconDownload, IconKey, IconX } from '@tabler/icons-react'
+import { useState, type ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 import { CAL_URL } from '../NavMenu'
 
 // Hero decoration: a dot grid, a soft glow and a loose cluster of small pieces that echo the work
-// (API call, booking event, time slots, rate limit, OAuth). Illustrations only (aria-hidden), wide screens only.
-// The pieces are static: depth comes from shadows alone, with no borders, motion or hover effects.
+// (API call, booking event, time slots, rate limit, OAuth), wide screens only.
+// The pieces are static, with depth from shadows alone. The one exception is the time picker: its slots
+// highlight on hover and open the Cal.com booking page in a popup.
 
-function Piece({ className, tilt, children }: { className: string; tilt: string; children: ReactNode }) {
+const CAL_EMBED = `${CAL_URL}?embed=true&theme=light`
+
+function Piece({ className, tilt, children, interactive }: { className: string; tilt: string; children: ReactNode; interactive?: boolean }) {
     return (
-        <div className={cn('absolute', className)}>
+        <div className={cn('absolute', interactive && 'pointer-events-auto', className)} aria-hidden={interactive ? undefined : true}>
             <div className={tilt}>{children}</div>
         </div>
+    )
+}
+
+function BookingDialog({ open, onOpenChange, time }: { open: boolean; onOpenChange: (open: boolean) => void; time: string | null }) {
+    return (
+        <Dialog.Root open={open} onOpenChange={onOpenChange}>
+            <Dialog.Portal>
+                <Dialog.Overlay className="fixed inset-0 z-40 bg-zinc-950/50" />
+                <Dialog.Content className="animate-fade-up fixed inset-0 z-40 m-auto flex h-[min(92dvh,46rem)] w-[min(96vw,60rem)] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+                    <div className="flex items-center justify-between gap-4 border-b border-zinc-200 px-5 py-3">
+                        <div>
+                            <Dialog.Title className="text-base font-semibold">Book a 15-minute call</Dialog.Title>
+                            <Dialog.Description className="text-sm text-zinc-500">
+                                {time ? `You picked ${time}. Choose a day and confirm below.` : 'Choose a day and a time below.'}
+                            </Dialog.Description>
+                        </div>
+                        <Dialog.Close
+                            aria-label="Close"
+                            className="grid size-9 shrink-0 place-items-center rounded-lg text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900"
+                        >
+                            <IconX className="size-5" aria-hidden />
+                        </Dialog.Close>
+                    </div>
+                    <iframe title="Book a call with Abdul Munim on Cal.com" src={CAL_EMBED} className="w-full flex-1 border-0 bg-white" />
+                </Dialog.Content>
+            </Dialog.Portal>
+        </Dialog.Root>
     )
 }
 
@@ -42,16 +73,27 @@ function BookingToast() {
 }
 
 function SlotPicker() {
+    const [open, setOpen] = useState(false)
+    const [time, setTime] = useState<string | null>(null)
     return (
         <div className="w-52 rounded-2xl bg-white p-3 shadow-xl">
             <p className="mb-2 text-xs font-semibold text-zinc-900">Pick a time</p>
             <div className="grid grid-cols-3 gap-1.5">
                 {['9:00', '9:30', '10:00'].map(s => (
-                    <span key={s} className="rounded-lg bg-zinc-100 py-1.5 text-center text-xs font-medium text-zinc-700">
+                    <button
+                        key={s}
+                        type="button"
+                        onClick={() => {
+                            setTime(s)
+                            setOpen(true)
+                        }}
+                        className="rounded-lg bg-zinc-100 py-1.5 text-center text-xs font-medium text-zinc-700 transition-[transform,background-color,color,box-shadow] duration-150 hover:-translate-y-0.5 hover:bg-blue-600 hover:text-white hover:shadow-md focus-visible:bg-blue-600 focus-visible:text-white active:translate-y-0"
+                    >
                         {s}
-                    </span>
+                    </button>
                 ))}
             </div>
+            <BookingDialog open={open} onOpenChange={setOpen} time={time} />
         </div>
     )
 }
@@ -95,14 +137,14 @@ export default function IndexHeroSection() {
             />
 
             {/* a loose cluster close to the headline, at different heights and angles (wide screens only) */}
-            <div aria-hidden className="pointer-events-none absolute inset-0 hidden xl:block">
+            <div className="pointer-events-none absolute inset-0 z-10 hidden xl:block">
                 <Piece className="right-[calc(50%+23rem)] top-10" tilt="-rotate-3">
                     <CurlSnippet />
                 </Piece>
                 <Piece className="right-[calc(50%+25rem)] top-[17.5rem]" tilt="rotate-2">
                     <BookingToast />
                 </Piece>
-                <Piece className="left-[calc(50%+25.5rem)] top-[9rem]" tilt="rotate-3">
+                <Piece className="left-[calc(50%+25.5rem)] top-[9rem]" tilt="rotate-3" interactive>
                     <SlotPicker />
                 </Piece>
                 <Piece className="left-[calc(50%+28rem)] top-5" tilt="-rotate-2">
