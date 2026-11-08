@@ -27,9 +27,7 @@ export default function Home() {
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-40 focus:rounded-lg focus:bg-zinc-900 focus:px-4 focus:py-2 focus:text-white">
         Skip to content
       </a>
-      <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white">
-        <NavMenu />
-      </header>
+      <NavMenu />
       <main id="main">
         <TawkIntegration />
         <IndexHeroSection />
