@@ -1,79 +1,63 @@
-import useOnScreen from "@/hooks/useOnScreen";
-import { useRef, useState } from "react";
-import Tooltip from "../Tooltip";
+import type { ReactNode } from "react";
+
+type Experience = { name: ReactNode, when: string, items: ReactNode[] };
+
+const ext = { target: '_blank', rel: 'noreferrer', className: 'link' } as const;
+
+const experiences: Experience[] = [
+    {
+        name: 'Magical Digits',
+        when: 'Almost a year',
+        items: [
+            <>Lead back-end developer on the migration of a classic ASP rentals site to ASP.NET and Next.js (<a href='https://crystalcabins.com/' {...ext}>crystalcabins.com</a>), later promoted to lead full-stack developer.</>,
+            'Added multi-store support to Opticofy, a standalone POS and invoicing application. It is the only optics POS, reporting and invoicing solution in the metropolis.',
+            'Built an accounting application to manage payments and generate reports, in the spirit of Crystal Reports, for organisations with many accounts.',
+            'Built a Flutter application that times prayer.',
+            <>Reached about 1000 reputation on <a href='https://stackoverflow.com/users/9138440/amunim' {...ext}>StackOverflow</a>, with <a href='https://stackoverflow.com/users/87015/salman-a' {...ext}>Salman Arshad</a> among my seniors.</>,
+            <>The <a href='https://www.linkedin.com/in/abdul-munim-x2002x/' {...ext}>reviews on LinkedIn</a> speak for themselves.</>,
+        ],
+    },
+    {
+        name: <a href='https://www.upwork.com/freelancers/~016f42c0501a199670' {...ext}>Upwork</a>,
+        when: 'Freelance since late 2021',
+        items: [
+            'More than 17 jobs, Top Rated with a 100% job success score so far.',
+            'A restaurant client system.',
+            'A referral tracker system on a Discord server.',
+            <><a href='https://mentorflight-production.up.railway.app/route' {...ext}>Mentor Flight</a>.</>,
+            <>An article on <a href='https://flagsmith.com/blog/net-feature-flag/' {...ext}>.NET feature flags</a> for Flagsmith.</>,
+            'A stream trading API integration with a referral system.',
+            'A gift card balance checker for Walmart, Home Depot and Bed Bath & Beyond.',
+            'An application that monitors keywords in an RSS feed and pastes by simulating mouse and keyboard.',
+        ],
+    },
+    {
+        name: 'Hobby projects',
+        when: 'Side projects and game jams',
+        items: [
+            'A Zoom-like meeting application, built when COVID hit. Voice calls used RSA and ECHA encryption, with Opus encoding the packets.',
+            <>Honourable mention in the N3rkMind game jam for <a href='https://amunim.itch.io/robos-jailbreak' {...ext}>Robo&apos;s Jailbreak</a>.</>,
+            <>Took part in Ludum Dare with <a href='https://izanamiworkshop.itch.io/chick-n-die' {...ext}>Chick n Die</a>.</>,
+            <>Pluralsight C# assessment, <a href='https://www.upwork.com/freelancers/~016f42c0501a199670?p=1377856912245268480' {...ext}>expert score 251</a>.</>,
+        ],
+    },
+];
 
 export default function IndexPricingSection() {
-    const expirienceRef = useRef(null);
-    const [tooltipVisiblity, setTooltipVisiblity] = useState(false);
-    const [tooltipText, setTooltipText] = useState("");
-    const isExpirienceDivVisible = useOnScreen(expirienceRef);
-
-    function EnableTooltip(text: string) {
-        setTooltipText(text);
-        setTooltipVisiblity(true);
-    }
-
     return (
-        <section id="pricing" className='bg-primary py-20'>
-            <Tooltip text={tooltipText} visiblity={tooltipVisiblity} />
-            <h2 className='text-base uppercase spacing tracking-widest text-white text-center mb-20'>experiences</h2>
-            <div className='container mx-auto pt-6 px-8'>
-                <div className='text-center text-xl grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:px-20'>
-                    <div className='mx-auto'>
-                        <div className={`experience-box relative opacity-100 lg:opacity-25 lg:translate-x-9 lg:translate-y-[5%] ${(isExpirienceDivVisible ? "lg:!translate-y-[0%] lg:!opacity-100" : "")}`}>
-                            <h3 className='uppercase text-2xl relative z-30 text-[#777]'>Hobby</h3>
-                            <ul className='feature-list'>
-                                <li onMouseOver={() => EnableTooltip("The application had voice call capabilities with RSA and ECHA encrytion, opus was used to encode the packets")} onMouseOut={() => setTooltipVisiblity(false)} className="cursor-pointer">Meeting application like Zoom(when COVID hit)</li>
-                                <li><a href='https://amunim.itch.io/robos-jailbreak'>Honourable Mention in N3rkMind gamejam</a></li>
-                                <li><a href='https://izanamiworkshop.itch.io/chick-n-die'>Particapted in Ludam Dare</a></li>
-                                <li><a href='https://www.upwork.com/freelancers/~016f42c0501a199670?p=1377856912245268480'>Pluralsight 251 Expert Score C# Assessment</a></li>
+        <section id="experience" className='experience section on-blue' aria-labelledby='experience-title'>
+            <div className='wrap'>
+                <h2 id='experience-title' className='section__title'>Experience</h2>
+                <div className='exp-grid'>
+                    {experiences.map((e, i) => (
+                        <div key={i} className='exp'>
+                            <h3>{e.name}</h3>
+                            <p className='exp__when'>{e.when}</p>
+                            <ul>
+                                {e.items.map((item, j) => <li key={j}>{item}</li>)}
                             </ul>
-                            {/* <div>
-                    <a href='#portfolio' className='btn btn-sm mt-4 btn-gray hover:bg-black hover:text-white '>Request quote</a>
-                  </div> */}
                         </div>
-                    </div>
-                    <div className='mx-auto'>
-                        <div className={`experience-box relative opacity-100 lg:opacity-25  before:bg-[#7205f7] after:bg-[#5826a082] lg:translate-y-[15%] ${(isExpirienceDivVisible ? "lg:!translate-y-[5%] lg:!opacity-100" : "")}`}>
-                            <h3 className='uppercase text-2xl relative z-30 text-white'><a className='underline underline-offset-2 decoration-dotted hover:decoration-wavy hover:text-gray-600' href='https://www.upwork.com/freelancers/~016f42c0501a199670'>Upwork</a></h3>
-                            <ul className='feature-list'>
-                                <li>More than 17 jobs</li>
-                                <li>Top Rated Freelancer with 100% Job Success Score(yet)</li>
-                                <li>Working since late 2021</li>
-                                <li>Referral tracker system on discord server</li>
-                                <li>Restaurant Client System</li>
-                                <li><a href='https://mentorflight-production.up.railway.app/route'>Mentor Flight</a></li>
-                                <li><a href='https://flagsmith.com/blog/net-feature-flag/'>.Net Feature Flags article on Flagsmith</a></li>
-                                <li>Integration of stream trading API and referral system on a project</li>
-                                <li>Gift Card Balance Checker of Wallmart, Home Depot and Bed, Bath and Beyond</li>
-                                <li>Application to monitor keywords from RSS flux and paste by simulating mouse and keyboard</li>
-                            </ul>
-                            {/* <div>
-                    <a href='#portfolio' className='btn btn-sm mt-4 btn-primary'>Request quote</a>
-                  </div> */}
-                        </div>
-                    </div>
-                    <div className='mx-auto'>
-                        <div ref={expirienceRef} className={`experience-box relative before:bg-[#ffcd00] opacity-100 lg:opacity-25 after:bg-[#e4ba34] lg:translate-y-[25%] ${(isExpirienceDivVisible ? "lg:!translate-y-[10%] lg:!opacity-100" : "")}`}>
-                            <h3 className='uppercase text-2xl relative z-30 text-white'>Magical Digits</h3>
-                            <ul className='feature-list'>
-                                <li>Worked for almost an year</li>
-                                <li><a target='_blank' href='https://crystalcabins.com/'>Lead Back-end dev on migrating classic ASP rentals site to ASP.Net/Next.js</a></li>
-                                <li>Later promoted to lead Full-Stack developer on the project</li>
-                                <li>Added multiple stores feature to a standalone POS invoicing application(opticofy),</li>
-                                <li>Opticofy is the sole optics POS, reporting and invoicing solution in the metropolis</li>
-                                <li>Created accounting application to manage payments and generate reports</li>
-                                <li>The application's aim is to make reporting easier like crystal reports and help organisations to manage their various accounts</li>
-                                <li>Created a flutter application to time prayer</li>
-                                <li><a target='_blank' href='https://stackoverflow.com/users/9138440/amunim'>Acheived ~1000 score on StackOverflow</a></li>
-                                <li>Had <a target='_blank' href='https://stackoverflow.com/users/87015/salman-a'>Salman Arshad</a> as my senior among others</li>
-                                <li><a target='_blank' href='https://www.linkedin.com/in/abdul-munim-x2002x/'>Reviews on linked in speaks for themselves...</a></li>
-                            </ul>
-                            {/* <div>
-                    <a href='#portfolio' className='btn btn-sm mt-4 !text-[#FFF] border-[#ffcb05] bg-[#ffcb05]'>Request quote</a>
-                  </div> */}
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </section>

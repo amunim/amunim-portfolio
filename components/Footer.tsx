@@ -1,5 +1,5 @@
-import { sendEmail } from "@/utils/send-email";
-import { useCallback, useEffect, useState } from "react";
+import useOnScreen from "@/hooks/useOnScreen";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 
 export type FormData = {
@@ -18,12 +18,25 @@ interface RateLimitData {
   firstAttempt: number;
 }
 
+const links = [
+  { label: 'Email amunim@amunim.me', href: 'mailto:amunim@amunim.me' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/abdul-munim-x2002x/' },
+  { label: 'GitHub', href: 'https://github.com/amunim' },
+  { label: 'Upwork', href: 'https://www.upwork.com/freelancers/~016f42c0501a199670' },
+  { label: 'StackOverflow', href: 'https://stackoverflow.com/users/9138440/amunim' },
+];
+
 export default function Footer() {
-  const { register, handleSubmit, reset, watch } = useForm<FormData>();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const email = watch('email');
+
+  // the page's one dealt moment: the marker bar draws once, when the heading first scrolls into view
+  const markRef = useRef<HTMLSpanElement>(null);
+  const markSeen = useOnScreen(markRef);
+  const [drawn, setDrawn] = useState(false);
+  useEffect(() => { if (markSeen) setDrawn(true); }, [markSeen]);
 
   useEffect(() => {
     const loadRecaptcha = () => {
@@ -118,10 +131,10 @@ export default function Footer() {
       }
 
       updateRateLimit(data.email);
-      setSuccess('Message sent successfully!');
+      setSuccess('Your message is in. I will reply by email.');
       reset();
     } catch (err) {
-      setError('Failed to send message. Please try again.');
+      setError('Failed to send message. Please try again or email amunim@amunim.me.');
     } finally {
       setIsLoading(false);
     }
@@ -129,74 +142,65 @@ export default function Footer() {
 
   return (
     <footer id='contact'>
-      <div className='lg:w-[35rem] md:w-[25rem] sm:w-[21rem] w-[15rem] mx-auto mt-3 pb-12'>
-        <div className='text-center text-9xl'>
-          <h1>Get in touch</h1>
-        </div>
-        {error && <div className="text-red-500 mb-4 text-center">{error}</div>}
-        {success && <div className="text-green-500 mb-4 text-center">{success}</div>}
-        {/* <form onSubmit={handleSubmit(onSubmit)}>
-          <fieldset>
-            <div className='mb-6'>
-              <div className='uppercase text-[#9c9c9c] mb-2'>
-                <label>Email</label>
-              </div>
-              <input
-                type="email"
-                className='border rounded px-1 w-full py-2'
-                {...register("email", { required: true })} />
-            </div>
-          </fieldset>
-          <fieldset>
-            <div className='mb-6'>
-              <div className='uppercase text-[#9c9c9c] mb-2'>
-                <label>Name</label>
-              </div>
-              <input
-                className='border rounded px-1 w-full py-2'
-                {...register("name", { required: true })} />
-            </div>
-          </fieldset>
-          <fieldset className='pb-6'>
-            <div className='uppercase text-[#9c9c9c] mb-2'>
-              <label>Message</label>
-            </div>
-            <textarea
-              className='w-full border rounded px-1'
-              aria-multiline="true"
-              rows={5}
-              {...register('message', { required: true })}>
-            </textarea>
-          </fieldset>
-          <div className='text-center'>
-            <button
-              type="submit"
-              className='btn btn-primary disabled:opacity-50 disabled:cursor-not-allowed'
-              disabled={isLoading}
-            >
-              {isLoading ? 'Sending...' : 'Send Message'}
-            </button>
+      <section className='contact section' aria-labelledby='contact-title'>
+        <div className='wrap contact__grid'>
+          <div className='contact__copy'>
+            <h2 id='contact-title' className='contact__title'>
+              Contact me about your <span ref={markRef} className='mark' data-drawn={drawn}>project</span>
+            </h2>
+            <p className='section__intro'>Say what the system should do, who will use it and when you need it.</p>
+            <ul className='contact__links'>
+              {links.map(l => (
+                <li key={l.href}><a className='link' href={l.href} {...(l.href.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}>{l.label}</a></li>
+              ))}
+            </ul>
           </div>
-        </form> */}
-      </div>
-      <div className='mb-32'>
-        <ul className='flex flex-col md:flex-row justify-center align-middle footer-navbar text-[#9c9c9c]'>
-          <li>
-            <a href='https://www.linkedin.com/in/abdul-munim-x2002x/'>LinkedIn</a>
-          </li>
-          <li>
-            <a href='mailto:amunim@amunim.me'>Email</a>
-          </li>
-          <li>
-            <a href='https://github.com/amunim'>GitHub</a>
-          </li>
-          <li>
-            <a href='https://www.upwork.com/freelancers/~016f42c0501a199670'>Upwork</a>
-          </li>
-          <li>
-            <a href='https://stackoverflow.com/users/9138440/amunim'>StackOverflow</a>
-          </li>
-        </ul>
+
+          <form className='contact__form' onSubmit={handleSubmit(onSubmit)} noValidate>
+            <label className='field'>
+              <span>Name</span>
+              <input
+                autoComplete='name'
+                aria-invalid={!!errors.name}
+                {...register("name", { required: 'Write your name' })} />
+              {errors.name && <p className='field__error'>{errors.name.message}</p>}
+            </label>
+            <label className='field'>
+              <span>Email</span>
+              <input
+                type='email'
+                autoComplete='email'
+                aria-invalid={!!errors.email}
+                {...register("email", { required: 'Write the email I should reply to', pattern: { value: /^\S+@\S+\.\S+$/, message: 'Write an email like name@example.com' } })} />
+              {errors.email && <p className='field__error'>{errors.email.message}</p>}
+            </label>
+            <label className='field'>
+              <span>Message</span>
+              <textarea
+                rows={5}
+                aria-invalid={!!errors.message}
+                {...register('message', { required: 'Write what you need built' })} />
+              {errors.message && <p className='field__error'>{errors.message.message}</p>}
+            </label>
+            <div role='status' aria-live='polite'>
+              {error && <p className='form-status' data-kind='error'>{error}</p>}
+              {success && <p className='form-status' data-kind='ok'>{success}</p>}
+            </div>
+            <button type='submit' className='btn btn-primary' disabled={isLoading}>
+              {isLoading ? 'Sending...' : 'Send message'}
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <div className='site-footer'>
+        <div className='wrap'>
+          <p className='site-footer__name' aria-hidden='true'>Abdul Munim</p>
+          <div className='site-footer__meta'>
+            <span>&copy; {new Date().getFullYear()} Abdul Munim</span>
+            <a href='#main' className='link'>Back to top</a>
+          </div>
+        </div>
       </div>
     </footer>
   );

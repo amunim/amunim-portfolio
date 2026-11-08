@@ -7,46 +7,52 @@ export type PortfolioParams = {
     videoLink: string,
     previewLink: string,
     visitLink: string,
-    previewText?: string
+    previewText?: string,
+    visitText?: string,
+    mediaAlt?: string
 }
 
 const getPortfolioItems: () => Promise<PortfolioParams[]> = () => {
     //perhaps call an API to get the items
 
+    // previewLink / visitLink of "" or "#main" mean there is no public page: no button is rendered.
     return Promise.resolve([
         {
             Id: 5,
             title: "Zid Sheets Integration",
             previewLink: "https://zidsheets.amunim.me/en/privacy-policy",
-            previewText: "Privacy Policy",
-            description: `A low code solution that integrate zid (shopify for the middle east) stores with google sheets.
-            Easily export all your orders, customers, carts to selected sheets with a very simple UI/UX in real-time.
-            App features english and arabic support.`,
-            year: "Recommmended",
-            videoLink: "https://zidsheets.amunim.me/en/sheet-preview.mp4",
+            previewText: "Read the privacy policy",
+            visitText: "Visit Zid Sheets",
+            description: `A low-code integration between Zid stores (the Shopify of the Middle East) and Google Sheets.
+
+Orders, customers and carts export to the sheets you pick, in real time, through a simple interface in English and Arabic.`,
+            year: "Recommended",
+            // https://zidsheets.amunim.me/en/sheet-preview.mp4 returned 404 on 2026-11-08; restore videoLink once it is back.
+            videoLink: "",
             posterLink: "",
+            mediaAlt: "Zid Sheets exporting store orders into a Google Sheet",
             visitLink: "https://zidsheets.amunim.me/"
         },
         {
             Id: 1,
-            title: "Sunspots/Crystal Cabin/Goldener Inns",
-            previewLink: "https://goldenerinns.com/",
-            description: `Online Rentals, booking houses, units, complexes for multiple nightes. Displaying data calendar, member details, news, blogs and everything in between like checkout all on different domains with multiple units featuring on a range of domains powered by a single monolithic back-end.
-Bookings can also arrive from airbnb, booking and other houdini sites(independant website for a specific unit).
-A few domains are:  
-    - [Goldener Inns](https://goldenerinns.com)
-    - [Crystal Cabins](https://crystalcabins.com/)  
-    - [Bedfinders](https://bedfinders.com)
-    - [101escapes](https://101escapes.com)
-    - [Arrow Point Condos](https://arrowpointcondos.com)
-    - [Sweet Caroline Inn](https://sweetcarolineinn.com)
-    - [Criss Cross Condo](https://crisscrosscondo.com)
-    - [All Points Central](https://allpointscentral.com)
-    `,
-            year: "Recommmended",
+            title: "Sunspots, Crystal Cabins and Goldener Inns",
+            previewLink: "",
+            description: `Online rentals for houses, units and complexes, booked by the night. The calendar, member details, news, blog and checkout run on many domains from a single monolithic back-end.
+
+Bookings also arrive from Airbnb, Booking.com and similar channels, and single units can have their own independent site.
+
+- [Goldener Inns](https://goldenerinns.com)
+- [Crystal Cabins](https://crystalcabins.com/)
+- [Bedfinders](https://bedfinders.com)
+- [101escapes](https://101escapes.com)
+- [Arrow Point Condos](https://arrowpointcondos.com)
+- [Sweet Caroline Inn](https://sweetcarolineinn.com)
+- [Criss Cross Condo](https://crisscrosscondo.com)
+- [All Points Central](https://allpointscentral.com)`,
+            year: "Recommended",
             videoLink: "",
-            posterLink: "/portfolio/goldener.gif",
-            visitLink: "https://crystalcabins.com/"
+            posterLink: "",
+            visitLink: ""
         },
         /*{
             Id: 4,
@@ -65,28 +71,33 @@ A few domains are:
         {
             Id: 2,
             title: "Simple Accounting",
-            previewLink: "#main",
-            description: `A simple accounting software to create invoices, JV/Bank Voucher/Cash Voucher. Project/Customer wise reports or vouchers. Reporting such as
-    - Audit Trail
-    - Trail Balance
-    - Income Expense
-    - Controlling Balance
-    - Yearly Comparision (Expense)
-    - Project wise Accounts Summary
-    - Project wise Non Expense Accounts summary`,
+            previewLink: "",
+            description: `Accounting software for invoices and for journal, bank and cash vouchers, with reports by project and by customer:
+
+- Audit trail
+- Trial balance
+- Income and expense
+- Controlling balance
+- Yearly comparison (expense)
+- Project-wise accounts summary
+- Project-wise non-expense accounts summary`,
             year: "2022",
-            posterLink: "/portfolio/accounting.gif",
-            videoLink: "",
-            visitLink: "#main"
+            posterLink: "",
+            // the 6 MB gif of the same recording is still in /public/portfolio
+            videoLink: "/portfolio/accounting.mp4",
+            mediaAlt: "Simple Accounting creating an invoice and running a report",
+            visitLink: ""
         },
         {
             Id: 3,
             title: "Opticofy",
-            previewLink: "#main",
-            description: `A simple POS application to create invoices for sales in optical shop vendors, simply add a customer info, create recievables or sales records. Later Have reporting on yearly sales or customer-wise sales`,
+            previewLink: "",
+            description: `A point-of-sale app for optical shops. Add a customer, record a sale or a receivable, then report on yearly or per-customer sales.`,
             year: "2021",
             posterLink: "/portfolio/opticofy.gif",
+            mediaAlt: "Opticofy point-of-sale menu with customer, sales and report screens",
             videoLink: "",
+            visitText: "Visit Opticofy",
             visitLink: "https://opticofy.com/"
         },
     ]);

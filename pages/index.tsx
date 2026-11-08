@@ -21,27 +21,32 @@ export const getServerSideProps: GetServerSideProps<{ portfolio: PortfolioParams
 }
 
 export default function Home({ portfolio, contributions }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const title = 'Abdul Munim | Full-stack developer for booking, accounting and POS software'
+  const description = 'Freelance full-stack developer building rental booking, accounting and point-of-sale systems in C# and TypeScript. Top Rated on Upwork.'
   return (
     <>
       <Head>
-        <title>Abdul Munim | Software Engineer</title>
-        <meta name="description" content="Software Engineer, Full-stack Web Developer, .Net developer" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* <link rel="icon" href="/favicon.svg" /> */}
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
       </Head>
 
-      <header>
+      <a href="#main" className="skip-link">Skip to content</a>
+      <header className="site-header">
         <NavMenu />
       </header>
-      <main id='main' className='bg-white w-full -pt-8'>
+      <main id='main'>
         <TawkIntegration />
         <IndexIntroSection />
-        <IndexServices />
         <IndexPortfolioSection portfolioItems={portfolio} />
+        <IndexServices />
         <IndexPricingSection />
         <IndexContributionsSection contributions={contributions} />
-        <Footer />
       </main>
+      <Footer />
     </>
   )
 }
