@@ -11,21 +11,30 @@ import {
 } from '@tabler/icons-react'
 import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
+import { useInView, useReplay, vars } from '../ill'
 
-// Small, abstract illustrations of each skill. They show the idea, not real data.
+// Small, abstract, looping illustrations of each skill. They show the idea, not real data.
+// Keyframes live in styles/globals.css (.ill-*); they only touch transform and opacity.
 
-const pill = 'rounded-md border border-zinc-200 bg-white px-2.5 py-1 text-xs font-medium text-zinc-700 shadow-sm'
+const pill = 'relative rounded-md border border-zinc-200 bg-white px-2.5 py-1 text-xs font-medium text-zinc-700 shadow-sm'
 
 function Services() {
+    const line = (fill: string) => (
+        <span className="relative h-px w-5 bg-zinc-300 sm:w-8">
+            <span className="ill-fill absolute inset-x-0 -top-px h-0.5 bg-blue-600" style={vars({ '--fill': fill })} />
+        </span>
+    )
     return (
         <div className="flex h-full items-center justify-center gap-2 sm:gap-3">
-            <span className={pill}>Gateway</span>
-            <span className="h-px w-5 bg-zinc-300 sm:w-8" />
+            <span className={cn(pill, 'ill-ring')} style={vars({ '--ring': 'ms-gw' })}>Gateway</span>
+            {line('ms-l1')}
             <div className="flex flex-col gap-2">
-                {['Auth', 'Booking', 'Queue'].map(s => <span key={s} className={pill}>{s}</span>)}
+                {['Auth', 'Booking', 'Queue'].map((s, i) => (
+                    <span key={s} className={cn(pill, 'ill-ring')} style={vars({ '--ring': 'ms-svc', '--ring-d': '9s', '--d': `${i * 3}s` })}>{s}</span>
+                ))}
             </div>
-            <span className="h-px w-5 bg-zinc-300 sm:w-8" />
-            <span className="rounded-md bg-zinc-900 px-2.5 py-1 text-xs font-medium text-white shadow-sm">Database</span>
+            {line('ms-l2')}
+            <span className="ill-ring relative rounded-md bg-zinc-900 px-2.5 py-1 text-xs font-medium text-white shadow-sm" style={vars({ '--ring': 'ms-db' })}>Database</span>
         </div>
     )
 }
@@ -36,12 +45,22 @@ function AbuseLog() {
         { label: 'New visitor', result: 'Allowed', dark: false },
         { label: 'Burst of requests', result: 'Rate limited', dark: true },
     ]
+    const [tick, onEnd] = useReplay()
     return (
-        <ul className="flex h-full flex-col justify-center gap-2">
-            {rows.map(r => (
-                <li key={r.label} className="flex items-center justify-between gap-3 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-xs shadow-sm">
+        <ul key={tick} onAnimationEnd={onEnd} className="ill-group flex h-full flex-col justify-center gap-2">
+            {rows.map((r, i) => (
+                <li
+                    key={r.label}
+                    className="ill-in flex items-center justify-between gap-3 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-xs shadow-sm"
+                    style={vars({ '--d': `${i * 1.4}s` })}
+                >
                     <span className="font-medium text-zinc-700">{r.label}</span>
-                    <span className={cn('rounded-full px-2 py-0.5 font-medium', r.dark ? 'bg-zinc-900 text-white' : 'bg-blue-50 text-blue-700')}>{r.result}</span>
+                    <span
+                        className={cn('ill-pop rounded-full px-2 py-0.5 font-medium', r.dark ? 'bg-zinc-900 text-white' : 'bg-blue-50 text-blue-700')}
+                        style={vars({ '--d': `${i * 1.4 + 0.5}s` })}
+                    >
+                        {r.result}
+                    </span>
                 </li>
             ))}
         </ul>
@@ -49,17 +68,22 @@ function AbuseLog() {
 }
 
 function BookingSync() {
-    const booked = new Set([2, 3, 4, 9, 10, 16, 17, 18, 19])
+    const booked = [2, 3, 4, 9, 10, 16, 17, 18, 19]
+    const [tick, onEnd] = useReplay()
     return (
         <div className="flex h-full flex-col justify-center gap-4">
-            <div className="grid grid-cols-7 gap-1.5" aria-hidden>
+            <div key={tick} onAnimationEnd={onEnd} className="ill-group grid grid-cols-7 gap-1.5" aria-hidden>
                 {Array.from({ length: 21 }, (_, i) => (
-                    <span key={i} className={cn('aspect-square rounded-md', booked.has(i) ? 'bg-blue-600' : 'bg-zinc-200')} />
+                    <span key={i} className="relative aspect-square rounded-md bg-zinc-200">
+                        {booked.includes(i) && (
+                            <span className="ill-pop absolute inset-0 rounded-md bg-blue-600" style={vars({ '--d': `${booked.indexOf(i) * 0.25}s` })} />
+                        )}
+                    </span>
                 ))}
             </div>
             <div className="flex items-center justify-center gap-2">
                 <span className={pill}>Airbnb</span>
-                <IconArrowsExchange className="size-4 text-zinc-500" aria-hidden />
+                <IconArrowsExchange className="ill-sync size-4 text-zinc-500" aria-hidden />
                 <span className={pill}>Booking.com</span>
             </div>
         </div>
@@ -67,27 +91,38 @@ function BookingSync() {
 }
 
 function Tables() {
-    const table = (name: string, cols: string[]) => (
+    const table = (name: string, cols: string[], lit: string, hl: string) => (
         <div className="w-36 overflow-hidden rounded-lg border border-zinc-200 bg-white text-xs shadow-sm">
             <div className="bg-zinc-900 px-3 py-1.5 font-medium text-white">{name}</div>
-            {cols.map(c => <div key={c} className="border-t border-zinc-100 px-3 py-1.5 text-zinc-700">{c}</div>)}
+            {cols.map(c => (
+                <div key={c} className="relative border-t border-zinc-100 px-3 py-1.5 text-zinc-700">
+                    {c === lit && <span className="ill-hl" style={vars({ '--hl': hl })} aria-hidden />}
+                    <span className="relative">{c}</span>
+                </div>
+            ))}
         </div>
     )
     return (
         <div className="flex h-full items-center justify-center gap-3">
-            {table('users', ['id', 'email', 'name'])}
-            <span className="h-px w-6 bg-blue-600" aria-hidden />
-            {table('bookings', ['id', 'user_id', 'starts_at'])}
+            {table('users', ['id', 'email', 'name'], 'id', 'tb-a')}
+            <span className="relative h-0.5 w-8 bg-zinc-300" aria-hidden>
+                <span className="ill-fill absolute inset-0 bg-blue-600" style={vars({ '--fill': 'tb-line', '--fill-d': '4s' })} />
+            </span>
+            {table('bookings', ['id', 'user_id', 'starts_at'], 'user_id', 'tb-b')}
         </div>
     )
 }
 
 function TestRun() {
+    const [tick, onEnd] = useReplay()
     return (
-        <ul className="flex h-full flex-col justify-center gap-2">
-            {['creates a booking', 'rejects a double booking', 'retries a failed webhook'].map(t => (
+        <ul key={tick} onAnimationEnd={onEnd} className="ill-group flex h-full flex-col justify-center gap-2">
+            {['creates a booking', 'rejects a double booking', 'retries a failed webhook'].map((t, i) => (
                 <li key={t} className="flex items-center gap-2.5 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-xs font-medium text-zinc-700 shadow-sm">
-                    <IconCheck className="size-4 shrink-0 text-blue-600" aria-hidden stroke={2.5} />
+                    <span className="relative size-4 shrink-0">
+                        <span className="absolute inset-0 rounded-full border border-zinc-300" />
+                        <IconCheck className="ill-pop absolute inset-0 size-4 text-blue-600" aria-hidden stroke={2.5} style={vars({ '--d': `${0.8 + i * 1.5}s` })} />
+                    </span>
                     {t}
                 </li>
             ))}
@@ -102,10 +137,17 @@ function Layers() {
         { name: 'Infrastructure', w: 'w-[84%]', tone: 'bg-zinc-300 text-zinc-800' },
         { name: 'Persistence', w: 'w-full', tone: 'bg-zinc-200 text-zinc-700' },
     ]
+    const [tick, onEnd] = useReplay()
     return (
-        <div className="flex h-full flex-col items-center justify-center gap-1.5">
-            {layers.map(l => (
-                <span key={l.name} className={cn('rounded-md py-1.5 text-center text-xs font-medium', l.w, l.tone)}>{l.name}</span>
+        <div key={tick} onAnimationEnd={onEnd} className="ill-group flex h-full flex-col items-center justify-center gap-1.5">
+            {layers.map((l, i) => (
+                <span
+                    key={l.name}
+                    className={cn('ill-in rounded-md py-1.5 text-center text-xs font-medium', l.w, l.tone)}
+                    style={vars({ '--d': `${(layers.length - 1 - i) * 0.5}s` })}
+                >
+                    {l.name}
+                </span>
             ))}
         </div>
     )
@@ -157,8 +199,11 @@ const capabilities: { title: string; text: string; Icon: TablerIcon; span: strin
 ]
 
 export default function IndexCapabilitiesSection() {
+    // loops rest while the section is off-screen
+    const [ref, visible] = useInView<HTMLElement>()
+
     return (
-        <section id="capabilities" aria-labelledby="capabilities-title" className="bg-white py-20 sm:py-28">
+        <section ref={ref} data-paused={!visible} id="capabilities" aria-labelledby="capabilities-title" className="bg-white py-20 sm:py-28">
             <div className="mx-auto max-w-6xl px-6">
                 <div className="max-w-2xl">
                     <h2 id="capabilities-title" className="text-3xl sm:text-4xl">What I build</h2>
@@ -170,7 +215,7 @@ export default function IndexCapabilitiesSection() {
                             key={title}
                             className={cn('group flex flex-col rounded-3xl border border-zinc-200 bg-white p-2 transition-shadow hover:shadow-lg', span)}
                         >
-                            <div className="h-52 overflow-hidden rounded-2xl bg-zinc-100 p-4 sm:p-5" aria-hidden>
+                            <div className="ill h-52 overflow-hidden rounded-2xl bg-zinc-100 p-4 sm:p-5" aria-hidden>
                                 {visual}
                             </div>
                             <div className="p-5 pt-6">
