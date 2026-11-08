@@ -169,3 +169,4 @@
 /* hero cards drift up and down very slowly (transform only) */
 .hero-float { animation: hero-float 6s ease-in-out infinite alternate; animation-delay: var(--d, 0s); }
 @keyframes hero-float { from { transform: translateY(0) } to { transform: translateY(-8px) } }
+

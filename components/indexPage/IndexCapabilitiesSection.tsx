@@ -220,7 +220,7 @@ export default function IndexCapabilitiesSection() {
             <div className="relative mx-auto max-w-6xl px-6">
                 <div className="max-w-2xl">
                     <h2 id="capabilities-title" className="text-3xl sm:text-4xl">What I build</h2>
-                    <p className="mt-4 text-zinc-400">Backend-heavy systems that have to stay up, stay fast and stay correct.</p>
+                    <p className="mt-4 font-medium leading-snug text-zinc-400">Backend-heavy systems that have to stay up, stay fast and stay correct.</p>
                 </div>
                 <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
                     {capabilities.map(({ title, text, Icon, span, visual }) => (
@@ -241,7 +241,7 @@ export default function IndexCapabilitiesSection() {
                                     </span>
                                     <h3 className="text-lg">{title}</h3>
                                 </div>
-                                <p className="mt-3 text-sm text-zinc-400">{text}</p>
+                                <p className="mt-3 text-sm font-medium leading-snug text-zinc-400">{text}</p>
                             </div>
                         </article>
                     ))}

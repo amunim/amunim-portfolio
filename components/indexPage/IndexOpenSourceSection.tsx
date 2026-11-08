@@ -170,7 +170,7 @@ export default function IndexOpenSourceSection() {
                 <div className="flex flex-wrap items-end justify-between gap-4">
                     <div className="max-w-2xl">
                         <h2 id="oss-title" className="text-3xl sm:text-4xl">Open source and community</h2>
-                        <p className="mt-4 text-zinc-600">Code, answers and writing for projects other people use.</p>
+                        <p className="mt-4 font-medium leading-snug text-zinc-600">Code, answers and writing for projects other people use.</p>
                     </div>
                     <a
                         href="https://stackoverflow.com/users/9138440/amunim"
@@ -204,7 +204,7 @@ export default function IndexOpenSourceSection() {
                                     <span className="rounded-full bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-700">{language}</span>
                                     <IconArrowUpRight className="size-5 shrink-0 text-zinc-400 transition-colors group-hover:text-blue-600" aria-hidden />
                                 </div>
-                                <p className="mt-3 text-sm text-zinc-600">{text}</p>
+                                <p className="mt-3 text-sm font-medium leading-snug text-zinc-600">{text}</p>
                             </div>
                         </a>
                     ))}

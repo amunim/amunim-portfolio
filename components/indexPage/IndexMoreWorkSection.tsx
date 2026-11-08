@@ -30,11 +30,11 @@ const projects = [
 
 export default function IndexMoreWorkSection() {
     return (
-        <section id="projects" aria-labelledby="projects-title" className="bg-white py-20 sm:py-28">
+        <section id="projects" aria-labelledby="projects-title" className="border-y border-zinc-200 bg-zinc-50 py-20 sm:py-28">
             <div className="mx-auto max-w-6xl px-6">
                 <div className="max-w-2xl">
                     <h2 id="projects-title" className="text-3xl sm:text-4xl">More projects</h2>
-                    <p className="mt-4 text-zinc-600">Business systems built for clients and companies.</p>
+                    <p className="mt-4 font-medium leading-snug text-zinc-600">Business systems built for clients and companies.</p>
                 </div>
                 <ul className="mt-12 divide-y divide-zinc-200 border-y border-zinc-200">
                     {projects.map(p => (
@@ -52,7 +52,7 @@ export default function IndexMoreWorkSection() {
                                 </h3>
                                 <p className="text-sm tabular-nums text-zinc-500">{p.year}</p>
                             </div>
-                            <p className="text-zinc-600">{p.text}</p>
+                            <p className="font-medium leading-snug text-zinc-600">{p.text}</p>
                             <p className="text-sm text-zinc-500 md:text-right">{p.stack}</p>
                         </li>
                     ))}

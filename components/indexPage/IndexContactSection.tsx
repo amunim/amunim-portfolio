@@ -13,7 +13,7 @@ export default function IndexContactSection() {
             <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-2 lg:items-center">
                 <div>
                     <h2 id="contact-title" className="text-3xl sm:text-4xl">Book a call</h2>
-                    <p className="mt-4 max-w-md text-zinc-300">
+                    <p className="mt-4 max-w-md font-medium leading-snug text-zinc-300">
                         Building a high-performance system, or want your current architecture reviewed? Pick a time for a 15-minute technical conversation.
                     </p>
                     <a

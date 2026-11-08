@@ -66,10 +66,10 @@ function SlideText({ slide, active }: { slide: Slide; active: boolean }) {
         <p className="text-sm font-medium text-zinc-600">{slide.role}</p>
       </div>
       <h2 className="mt-8 text-3xl sm:text-4xl lg:text-5xl">{slide.title}</h2>
-      <p className="mt-6 text-lg text-zinc-600">{slide.summary}</p>
+      <p className="mt-6 text-lg font-medium leading-snug text-zinc-600">{slide.summary}</p>
       <ul className="mt-6 space-y-3">
         {slide.points.map(p => (
-          <li key={p} className="flex gap-3 text-zinc-700">
+          <li key={p} className="flex gap-3 font-medium leading-snug text-zinc-700">
             <IconCheck className="mt-1 size-4 shrink-0 text-blue-600" aria-hidden stroke={2.5} />
             {p}
           </li>

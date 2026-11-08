@@ -160,7 +160,7 @@ export default function IndexHeroSection() {
                     <h1 id="hero-title" className="text-4xl sm:text-5xl lg:text-6xl">
                         Software engineer building APIs, integrations and booking systems
                     </h1>
-                    <p className="mx-auto mt-6 max-w-2xl text-lg text-zinc-600">
+                    <p className="mx-auto mt-6 max-w-2xl text-lg font-medium leading-snug text-zinc-600">
                         I&apos;m Abdul Munim. At iClosed I built the public API and MCP server. I also founded Cast, and I freelance on Upwork as a Top Rated developer.
                     </p>
                     <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -182,7 +182,7 @@ export default function IndexHeroSection() {
                             Download CV
                         </a>
                     </div>
-                    <p className="mt-6 flex items-center justify-center gap-2 text-sm text-zinc-600">
+                    <p className="mt-6 flex items-center justify-center gap-2 text-sm font-medium text-zinc-600">
                         <span className="size-2 rounded-full bg-emerald-500" aria-hidden />
                         Upwork: Top Rated, 100% job success, about 30 jobs, 4.89 stars
                     </p>
