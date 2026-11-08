@@ -30,7 +30,7 @@ const projects = [
 
 export default function IndexMoreWorkSection() {
     return (
-        <section id="projects" aria-labelledby="projects-title" className="border-y border-zinc-200 bg-zinc-50 py-20 sm:py-28">
+        <section id="projects" aria-labelledby="projects-title" className="bg-white py-20 sm:py-28">
             <div className="mx-auto max-w-6xl px-6">
                 <div className="max-w-2xl">
                     <h2 id="projects-title" className="text-3xl sm:text-4xl">More projects</h2>

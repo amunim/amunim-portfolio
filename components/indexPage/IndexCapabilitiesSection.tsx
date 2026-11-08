@@ -13,15 +13,16 @@ import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 import { useInView, useReplay, vars } from '../ill'
 
-// Small, abstract, looping illustrations of each skill. They show the idea, not real data.
+// Small, abstract, looping illustrations of each skill, drawn for a dark panel. They show the idea, not real data.
 // Keyframes live in styles/globals.css (.ill-*); they only touch transform and opacity.
 
-const pill = 'relative rounded-md border border-zinc-200 bg-white px-2.5 py-1 text-xs font-medium text-zinc-700 shadow-sm'
+const pill = 'relative rounded-md border border-white/10 bg-zinc-800 px-2.5 py-1 text-xs font-medium text-zinc-200'
+const row = 'rounded-lg border border-white/10 bg-zinc-800 px-3 py-2 text-xs'
 
 function Services() {
     const line = (fill: string) => (
-        <span className="relative h-px w-5 bg-zinc-300 sm:w-8">
-            <span className="ill-fill absolute inset-x-0 -top-px h-0.5 bg-blue-600" style={vars({ '--fill': fill })} />
+        <span className="relative h-px w-5 bg-zinc-700 sm:w-8">
+            <span className="ill-fill absolute inset-x-0 -top-px h-0.5 bg-blue-500" style={vars({ '--fill': fill })} />
         </span>
     )
     return (
@@ -34,7 +35,7 @@ function Services() {
                 ))}
             </div>
             {line('ms-l2')}
-            <span className="ill-ring relative rounded-md bg-zinc-900 px-2.5 py-1 text-xs font-medium text-white shadow-sm" style={vars({ '--ring': 'ms-db' })}>Database</span>
+            <span className="ill-ring relative rounded-md bg-white px-2.5 py-1 text-xs font-medium text-zinc-900" style={vars({ '--ring': 'ms-db' })}>Database</span>
         </div>
     )
 }
@@ -51,12 +52,12 @@ function AbuseLog() {
             {rows.map((r, i) => (
                 <li
                     key={r.label}
-                    className="ill-in flex items-center justify-between gap-3 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-xs shadow-sm"
+                    className={cn('ill-in flex items-center justify-between gap-3', row)}
                     style={vars({ '--d': `${i * 1.4}s` })}
                 >
-                    <span className="font-medium text-zinc-700">{r.label}</span>
+                    <span className="font-medium text-zinc-300">{r.label}</span>
                     <span
-                        className={cn('ill-pop rounded-full px-2 py-0.5 font-medium', r.dark ? 'bg-zinc-900 text-white' : 'bg-blue-50 text-blue-700')}
+                        className={cn('ill-pop rounded-full px-2 py-0.5 font-medium', r.dark ? 'bg-white text-zinc-900' : 'bg-blue-500/20 text-blue-300')}
                         style={vars({ '--d': `${i * 1.4 + 0.5}s` })}
                     >
                         {r.result}
@@ -74,16 +75,16 @@ function BookingSync() {
         <div className="flex h-full flex-col justify-center gap-4">
             <div key={tick} onAnimationEnd={onEnd} className="ill-group grid grid-cols-7 gap-1.5" aria-hidden>
                 {Array.from({ length: 21 }, (_, i) => (
-                    <span key={i} className="relative aspect-square rounded-md bg-zinc-200">
+                    <span key={i} className="relative aspect-square rounded-md bg-zinc-800">
                         {booked.includes(i) && (
-                            <span className="ill-pop absolute inset-0 rounded-md bg-blue-600" style={vars({ '--d': `${booked.indexOf(i) * 0.25}s` })} />
+                            <span className="ill-pop absolute inset-0 rounded-md bg-blue-500" style={vars({ '--d': `${booked.indexOf(i) * 0.25}s` })} />
                         )}
                     </span>
                 ))}
             </div>
             <div className="flex items-center justify-center gap-2">
                 <span className={pill}>Airbnb</span>
-                <IconArrowsExchange className="ill-sync size-4 text-zinc-500" aria-hidden />
+                <IconArrowsExchange className="ill-sync size-4 text-zinc-400" aria-hidden />
                 <span className={pill}>Booking.com</span>
             </div>
         </div>
@@ -92,10 +93,10 @@ function BookingSync() {
 
 function Tables() {
     const table = (name: string, cols: string[], lit: string, hl: string) => (
-        <div className="w-36 overflow-hidden rounded-lg border border-zinc-200 bg-white text-xs shadow-sm">
-            <div className="bg-zinc-900 px-3 py-1.5 font-medium text-white">{name}</div>
+        <div className="w-36 overflow-hidden rounded-lg border border-white/10 bg-zinc-800 text-xs">
+            <div className="bg-zinc-700 px-3 py-1.5 font-medium text-zinc-100">{name}</div>
             {cols.map(c => (
-                <div key={c} className="relative border-t border-zinc-100 px-3 py-1.5 text-zinc-700">
+                <div key={c} className="relative border-t border-white/5 px-3 py-1.5 text-zinc-300">
                     {c === lit && <span className="ill-hl" style={vars({ '--hl': hl })} aria-hidden />}
                     <span className="relative">{c}</span>
                 </div>
@@ -105,8 +106,8 @@ function Tables() {
     return (
         <div className="flex h-full items-center justify-center gap-3">
             {table('users', ['id', 'email', 'name'], 'id', 'tb-a')}
-            <span className="relative h-0.5 w-8 bg-zinc-300" aria-hidden>
-                <span className="ill-fill absolute inset-0 bg-blue-600" style={vars({ '--fill': 'tb-line', '--fill-d': '4s' })} />
+            <span className="relative h-0.5 w-8 bg-zinc-700" aria-hidden>
+                <span className="ill-fill absolute inset-0 bg-blue-500" style={vars({ '--fill': 'tb-line', '--fill-d': '4s' })} />
             </span>
             {table('bookings', ['id', 'user_id', 'starts_at'], 'user_id', 'tb-b')}
         </div>
@@ -118,10 +119,10 @@ function TestRun() {
     return (
         <ul key={tick} onAnimationEnd={onEnd} className="ill-group flex h-full flex-col justify-center gap-2">
             {['creates a booking', 'rejects a double booking', 'retries a failed webhook'].map((t, i) => (
-                <li key={t} className="flex items-center gap-2.5 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-xs font-medium text-zinc-700 shadow-sm">
+                <li key={t} className={cn('flex items-center gap-2.5 font-medium text-zinc-300', row)}>
                     <span className="relative size-4 shrink-0">
-                        <span className="absolute inset-0 rounded-full border border-zinc-300" />
-                        <IconCheck className="ill-pop absolute inset-0 size-4 text-blue-600" aria-hidden stroke={2.5} style={vars({ '--d': `${0.8 + i * 1.5}s` })} />
+                        <span className="absolute inset-0 rounded-full border border-zinc-600" />
+                        <IconCheck className="ill-pop absolute inset-0 size-4 text-blue-400" aria-hidden stroke={2.5} style={vars({ '--d': `${0.8 + i * 1.5}s` })} />
                     </span>
                     {t}
                 </li>
@@ -132,10 +133,10 @@ function TestRun() {
 
 function Layers() {
     const layers = [
-        { name: 'Core', w: 'w-[52%]', tone: 'bg-zinc-900 text-white' },
-        { name: 'Application', w: 'w-[68%]', tone: 'bg-zinc-700 text-white' },
-        { name: 'Infrastructure', w: 'w-[84%]', tone: 'bg-zinc-300 text-zinc-800' },
-        { name: 'Persistence', w: 'w-full', tone: 'bg-zinc-200 text-zinc-700' },
+        { name: 'Core', w: 'w-[52%]', tone: 'bg-white text-zinc-900' },
+        { name: 'Application', w: 'w-[68%]', tone: 'bg-zinc-300 text-zinc-900' },
+        { name: 'Infrastructure', w: 'w-[84%]', tone: 'bg-zinc-600 text-white' },
+        { name: 'Persistence', w: 'w-full', tone: 'bg-zinc-800 text-zinc-300' },
     ]
     const [tick, onEnd] = useReplay()
     return (
@@ -203,29 +204,44 @@ export default function IndexCapabilitiesSection() {
     const [ref, visible] = useInView<HTMLElement>()
 
     return (
-        <section ref={ref} data-paused={!visible} id="capabilities" aria-labelledby="capabilities-title" className="bg-white py-20 sm:py-28">
-            <div className="mx-auto max-w-6xl px-6">
+        <section
+            ref={ref}
+            data-paused={!visible}
+            id="capabilities"
+            data-header="dark"
+            aria-labelledby="capabilities-title"
+            className="on-dark relative overflow-hidden bg-zinc-950 py-20 text-white sm:py-28"
+        >
+            {/* faint dot grid that fades out from the top, to echo the hero */}
+            <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 [background-image:radial-gradient(rgb(255_255_255/0.09)_1px,transparent_1px)] [background-size:22px_22px] [-webkit-mask-image:linear-gradient(to_bottom,#000,transparent_55%)] [mask-image:linear-gradient(to_bottom,#000,transparent_55%)]"
+            />
+            <div className="relative mx-auto max-w-6xl px-6">
                 <div className="max-w-2xl">
                     <h2 id="capabilities-title" className="text-3xl sm:text-4xl">What I build</h2>
-                    <p className="mt-4 text-zinc-600">Backend-heavy systems that have to stay up, stay fast and stay correct.</p>
+                    <p className="mt-4 text-zinc-400">Backend-heavy systems that have to stay up, stay fast and stay correct.</p>
                 </div>
                 <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
                     {capabilities.map(({ title, text, Icon, span, visual }) => (
                         <article
                             key={title}
-                            className={cn('group flex flex-col rounded-3xl border border-zinc-200 bg-white p-2 transition-shadow hover:shadow-lg', span)}
+                            className={cn(
+                                'group flex flex-col rounded-3xl border border-white/10 bg-zinc-900 p-2 transition-colors hover:border-white/20 hover:bg-zinc-900/80',
+                                span,
+                            )}
                         >
-                            <div className="ill h-52 overflow-hidden rounded-2xl bg-zinc-100 p-4 sm:p-5" aria-hidden>
+                            <div className="ill h-52 overflow-hidden rounded-2xl bg-zinc-950 p-4 ring-1 ring-white/5 sm:p-5" aria-hidden>
                                 {visual}
                             </div>
                             <div className="p-5 pt-6">
                                 <div className="flex items-center gap-3">
-                                    <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-zinc-900 text-white">
+                                    <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-white text-zinc-900">
                                         <Icon className="size-5" aria-hidden stroke={1.75} />
                                     </span>
                                     <h3 className="text-lg">{title}</h3>
                                 </div>
-                                <p className="mt-3 text-sm text-zinc-600">{text}</p>
+                                <p className="mt-3 text-sm text-zinc-400">{text}</p>
                             </div>
                         </article>
                     ))}

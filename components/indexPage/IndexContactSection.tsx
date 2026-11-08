@@ -9,7 +9,7 @@ const contacts = [
 
 export default function IndexContactSection() {
     return (
-        <section id="contact" aria-labelledby="contact-title" className="bg-zinc-950 py-20 text-white sm:py-28">
+        <section id="contact" data-header="dark" aria-labelledby="contact-title" className="bg-zinc-950 py-20 text-white sm:py-28">
             <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-2 lg:items-center">
                 <div>
                     <h2 id="contact-title" className="text-3xl sm:text-4xl">Book a call</h2>
