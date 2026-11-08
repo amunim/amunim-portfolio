@@ -3,7 +3,7 @@ import { CAL_URL } from '../NavMenu'
 
 export default function IndexHeroSection() {
     return (
-        <section aria-labelledby="hero-title" className="bg-zinc-50 pb-20 pt-14 sm:pt-20">
+        <section id="intro" aria-labelledby="hero-title" className="bg-zinc-50 pb-20 pt-14 sm:pt-20">
             <div className="mx-auto max-w-6xl px-6">
                 <div className="mx-auto max-w-3xl text-center">
                     <h1 id="hero-title" className="text-4xl sm:text-5xl lg:text-6xl">

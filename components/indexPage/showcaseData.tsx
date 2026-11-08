@@ -78,7 +78,7 @@ export const slides: Slide[] = [
     tab: 'Magical Digits',
     logo: '/images/magical-digits.png',
     logoClass: 'h-6 w-auto',
-    role: 'Full stack engineer · 2021 to 2022',
+    role: 'Software Engineer L1 · 2021 to 2022',
     title: 'One platform behind every rental brand',
     summary:
       'Replaced separate ASP.NET codebases with a single .NET 6 API and a Next.js front end that serve every brand from one multi-tenant back-end, including Goldener Inns and Crystal Cabins.',

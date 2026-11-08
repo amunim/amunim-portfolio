@@ -16,7 +16,7 @@ Personal portfolio of Abdul Munim, a software engineer at iClosed (public API, O
 He builds business systems (booking and rentals, accounting and vouchers, point of sale, store integrations) test-first and typed, and has shipped them to real clients. A designer-developer template portfolio could not claim that body of work.
 
 ## Operating Context
-Software Engineer L2 at iClosed (2025 to present); founder of Cast (2025 to present); independent Zid Sheets integration (2024 to present); Magical Digits (2021 to 2022); Upwork freelance. Stack: TypeScript, Node.js, React, Next.js, AWS, C#/.NET, PostgreSQL/MongoDB/SQL Server.
+Software Engineer L2 at iClosed (2025 to present); founder of Cast (2025 to present); independent Zid Sheets integration (2024 to present); Magical Digits, Software Engineer L1 (2021 to 2022); Upwork freelance. Stack: TypeScript, Node.js, React, Next.js, AWS, C#/.NET, PostgreSQL/MongoDB/SQL Server.
 
 ## Capabilities and Constraints
 - Next.js 13 (pages router), React 18, Tailwind 3, TypeScript. Portfolio and contribution data are served from `services/*.ts` via `getServerSideProps`.
