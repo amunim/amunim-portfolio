@@ -23,9 +23,9 @@ function Mediator() {
     const [tick, onEnd] = useReplay()
     const handlers = ['Handler<int>', 'Handler<string>', 'Handler<Order>']
     return (
-        <div key={tick} onAnimationEnd={onEnd} className="ill-group flex h-full items-center justify-center gap-2 sm:gap-3">
+        <div key={tick} onAnimationEnd={onEnd} className="ill-group flex h-full flex-col items-center justify-center gap-2 sm:flex-row sm:gap-3">
             <span className={cn(pill, 'ill-in')} style={vars({ '--d': '0.2s' })}>RegisterGenericMediatRHandlers</span>
-            <IconArrowRight className="ill-in size-4 shrink-0 text-zinc-400" aria-hidden style={vars({ '--d': '0.6s' })} />
+            <span className="ill-in shrink-0" style={vars({ '--d': '0.6s' })}><IconArrowRight className="size-4 rotate-90 text-zinc-400 sm:rotate-0" aria-hidden /></span>
             <div className="flex flex-col gap-1.5">
                 {handlers.map((h, i) => (
                     <span key={h} className={cn(pill, 'ill-in flex items-center gap-1.5')} style={vars({ '--d': `${1 + i * 0.9}s` })}>
@@ -190,7 +190,7 @@ export default function IndexOpenSourceSection() {
                             href={href}
                             target="_blank"
                             rel="noreferrer"
-                            className="group flex flex-col rounded-3xl border border-zinc-200 bg-white p-2 transition-shadow hover:shadow-lg"
+                            className="group flex min-w-0 flex-col rounded-3xl border border-zinc-200 bg-white p-2 transition-shadow hover:shadow-lg"
                         >
                             <div className="ill h-52 overflow-hidden rounded-2xl bg-zinc-100 p-4 sm:p-5" aria-hidden>
                                 {visual}

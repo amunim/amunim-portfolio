@@ -93,7 +93,7 @@ function BookingSync() {
 
 function Tables() {
     const table = (name: string, cols: string[], lit: string, hl: string) => (
-        <div className="w-36 overflow-hidden rounded-lg border border-white/10 bg-zinc-800 text-xs">
+        <div className="w-28 overflow-hidden rounded-lg sm:w-36 border border-white/10 bg-zinc-800 text-xs">
             <div className="bg-zinc-700 px-3 py-1.5 font-medium text-zinc-100">{name}</div>
             {cols.map(c => (
                 <div key={c} className="relative border-t border-white/5 px-3 py-1.5 text-zinc-300">
@@ -104,9 +104,9 @@ function Tables() {
         </div>
     )
     return (
-        <div className="flex h-full items-center justify-center gap-3">
+        <div className="flex h-full items-center justify-center gap-2 sm:gap-3">
             {table('users', ['id', 'email', 'name'], 'id', 'tb-a')}
-            <span className="relative h-0.5 w-8 bg-zinc-700" aria-hidden>
+            <span className="relative h-0.5 w-5 bg-zinc-700 sm:w-8" aria-hidden>
                 <span className="ill-fill absolute inset-0 bg-blue-500" style={vars({ '--fill': 'tb-line', '--fill-d': '4s' })} />
             </span>
             {table('bookings', ['id', 'user_id', 'starts_at'], 'user_id', 'tb-b')}
@@ -227,7 +227,7 @@ export default function IndexCapabilitiesSection() {
                         <article
                             key={title}
                             className={cn(
-                                'group flex flex-col rounded-3xl border border-white/10 bg-zinc-900 p-2 transition-colors hover:border-white/20 hover:bg-zinc-900/80',
+                                'group flex min-w-0 flex-col rounded-3xl border border-white/10 bg-zinc-900 p-2 transition-colors hover:border-white/20 hover:bg-zinc-900/80',
                                 span,
                             )}
                         >
